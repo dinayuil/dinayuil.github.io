@@ -21,15 +21,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"dinayuil.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="开始工作之后，日程安排也变得更重要了。公司用的是企业版microsoft office 365，邮件和日历自然也就是用Outlook。但是登录都只能在公司内网，或者用VPN，想在手机上看还得用公司的iPhone（还不知道咋申请 后来知道了每个员工的岗位对应一个code，不同的code有不同的配置，我的话就没有配置公司的iPhone）。 有些私人的事情比如看医生、去市政厅之类的，也得在工作日的工作时">
+    <meta name="description" content="开始工作之后，日程安排也变得更重要了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sync Between Microsoft 365 Outlook and personal calendar">
 <meta property="og:url" content="http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/index.html">
 <meta property="og:site_name" content="Yandi&#39;s Little World">
-<meta property="og:description" content="开始工作之后，日程安排也变得更重要了。公司用的是企业版microsoft office 365，邮件和日历自然也就是用Outlook。但是登录都只能在公司内网，或者用VPN，想在手机上看还得用公司的iPhone（还不知道咋申请 后来知道了每个员工的岗位对应一个code，不同的code有不同的配置，我的话就没有配置公司的iPhone）。 有些私人的事情比如看医生、去市政厅之类的，也得在工作日的工作时">
+<meta property="og:description" content="开始工作之后，日程安排也变得更重要了。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-20T17:54:22.000Z">
-<meta property="article:modified_time" content="2022-09-30T18:04:34.103Z">
+<meta property="article:modified_time" content="2022-09-30T18:19:05.881Z">
 <meta property="article:author" content="Yandi Liu">
 <meta name="twitter:card" content="summary">
 
@@ -171,13 +171,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -263,7 +263,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-30 20:04:34" itemprop="dateModified" datetime="2022-09-30T20:04:34+02:00">2022-09-30</time>
+      <time title="Modified: 2022-09-30 20:19:05" itemprop="dateModified" datetime="2022-09-30T20:19:05+02:00">2022-09-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -314,7 +314,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>开始工作之后，日程安排也变得更重要了。公司用的是企业版microsoft office 365，邮件和日历自然也就是用Outlook。但是登录都只能在公司内网，或者用VPN，想在手机上看还得用公司的iPhone（<del>还不知道咋申请</del> 后来知道了每个员工的岗位对应一个code，不同的code有不同的配置，我的话就没有配置公司的iPhone）。</p>
+        <p>开始工作之后，日程安排也变得更重要了。</p>
+<span id="more"></span>
+
+<p>公司用的是企业版microsoft office 365，邮件和日历自然也就是用Outlook。但是登录都只能在公司内网，或者用VPN，想在手机上看还得用公司的iPhone（<del>还不知道咋申请</del> 后来知道了每个员工的岗位对应一个code，不同的code有不同的配置，我的话就没有配置公司的iPhone）。</p>
 <p>有些私人的事情比如看医生、去市政厅之类的，也得在工作日的工作时间，所以想加一个统一的日历里，方便日程管理。</p>
 <p>在Outlook的Calendar右键菜单看到了可以分享、邮件发送或者publish到WebDav。邮件发送首先可以派出了，因为不能自动同步，每次还得手动导入日程。分享也试过了，要输入分享到哪个邮箱地址，但是输入之后都提示对方的机构没有足够安全的设置所以不能分享。WebDav是我尝试了最久的，昨晚和今早都在找解决方案，Onedrive和坚果云都试过了，都没成功。</p>
 <p>最后我在用webdav calendar的关键词搜索的时候，找到了一个Outlook插件——Outlook CalDav Synchronizer，可以同步Outlook的日历到自定义的CalDav；但是也有更简单的，同步到谷歌日历。用这个插件成功把公司的Outlook日历同步到了我的个人谷歌日历，而且是双向同步。</p>
@@ -357,8 +360,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/18/%E4%BB%8E%E6%90%AC%E5%AE%B6%E5%88%B0%E5%85%A5%E8%81%8C/" rel="prev" title="从搬家到入职">
-                  <i class="fa fa-chevron-left"></i> 从搬家到入职
+                <a href="/2022/09/19/C-Virtual-Keyword-and-Confusion-of-a-Reference-Creation-Expression/" rel="prev" title="C++ Virtual Keyword and Confusion of a Reference Creation Expression">
+                  <i class="fa fa-chevron-left"></i> C++ Virtual Keyword and Confusion of a Reference Creation Expression
                 </a>
             </div>
             <div class="post-nav-item">
@@ -398,13 +401,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">10k</span>
+    <span title="Symbols count total">14k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">9 mins.</span>
+    <span title="Reading time total">12 mins.</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
