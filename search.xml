@@ -22,6 +22,58 @@
       </categories>
   </entry>
   <entry>
+    <title>从搬家到入职</title>
+    <url>/2022/09/18/%E4%BB%8E%E6%90%AC%E5%AE%B6%E5%88%B0%E5%85%A5%E8%81%8C/</url>
+    <content><![CDATA[<p>从6月29毕设答辩结束，开始找房子。最开始想找单人的公寓，但是发现确实太贵了，于是又找合租，联系了很多人。到7月26号终于跟一个私人房东谈好了一个两室一厅的房子。</p>
+<span id="more"></span>
+
+<p>记得七月还去找了驾校，最后我觉得在比利时要想用英语考驾照，还不如先学荷兰语，然后用荷兰语去考理论考试。</p>
+<p>在存押金的时候还有个小插曲。我在ING银行开的账户，所以想先去ING办押账户，可是ING的电话一直没人接，我就没法预约去办。然后我又预约了KBC的，一共去了两次，第一次去申请，第二次去开户。</p>
+<p>第二次去的时候，银行柜员说因为是合租所以必须两个人一起签字，说是法律要求。可是室友要到九月才到比利时，所以只能放弃在银行办了。既然是这样最开始申请的时候就应该跟我说啊。</p>
+<p>还好同学JF之前跟我提过政府有个平台可以自助开押金账户，在这个平台上开户就没啥问题，虽然也要填租户，但是只填一个人也行。</p>
+<p>八月初结束了给professor做项目的student job。八月十五号拿到了新租的房子的钥匙，然后就开始搬家。在这期间也抽空同学出去玩，安特卫普、列日、鹿特丹、根特、Ypres。搬家和旅行，都很累。毕竟是最后的暑假了，还是想出去逛一逛。</p>
+<p>因为新家和原来的地方离得比较近，我也没有车，所以就选择自己一点点搬过去。大都是用两个行李箱拖过去，把东西拿出来，然后再回旧家装行李箱。到搬家的最后三天，每天白天在新家等快递，装家具，晚上去旧家打扫卫生，感觉就像在打工。</p>
+<p>在买家具装家具的过程中还碰到了一些麻烦。最开始是准备全部家具都在宜家网站上买，然而在结账的时候，网站才提示我的床和室友的衣柜都不能送到新家的地址。我选的床还是宜家上能买到的最便宜的。想到之前在2dehands的网站上看到过一个卖家具的网站VidaXL的广告，于是去那上面看了看。</p>
+<p>我们在VidaXL上买了布衣柜和床。送过来床的包裹倒是比宜家的家具包裹要小很多，但是重还是一样的重。接下来才是灾难，我买的90cm宽的床，装了好几天，然后发现缺了零件，还需要电钻钻孔。跟我爸打电话然他看了看，我们都觉得质量不咋样，还是退了比较好。我先装好了一个布衣柜，觉得不太稳。而且每次开关还要弯腰上下拉拉链，对腰不好的我来说实在是不友好。最后我在VidaXL上买的东西就都退了，但是室友决定都留下来。</p>
+<p>说来也巧，我刚刚拿到新家的钥匙的那天下午，碰到对门邻居，也是中国人。而且他们也要搬家了，有些家具要处理掉，我就直接从他们那里接手了沙发，餐桌，和客厅的柜子。</p>
+<p>住了一段时间之后就发现房间里的WiFi信号不太行。因为入户的网线在客厅最靠外面，路由器也在那，正好是离房间距离最远的。对门家男主人告诉我Telenet可以提供一个免费的WiFi Booster，于是第二天我就去Telenet店里问了。Telenet最近店里人挺多，排了好一会队，结果店员说他们店里现在也没有，还是得邮寄，要5欧的运费。还不如我直接在Telenet的app上下订单，来店子里就因为不想交这5块钱运费。</p>
+<p>接着就到了CLT第一次荷兰语课的日子。比起刚刚来到比利时的第一学期上ILT的荷兰语课，还是CLT的更实用，而且班级也不大，总共大概20个学生，各种各样的人都有。</p>
+<p>九月十三号的时候收到了公司的邮件，通知我Single Permit通过了，最早第二天就能上班，问我啥时候去。我自然是回答第二天就能去，已经呆在家里太久了。从六月22号到九月13号，花了将近三个月的时间，算是正常的时间。</p>
+<p>以后有时间再写写从学生成为正式的打工人的感想吧。</p>
+]]></content>
+      <categories>
+        <category>life</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>C++ Miscellaneous</title>
+    <url>/2022/09/30/C-Miscellaneous/</url>
+    <content><![CDATA[<p>C++ is really complex, though interesting. There are many details and I think it’s not possible to remember all. This post is to record any useful information I find about C++, and will be kept updating. If there are topics needed to further explanation, I may write a new post specific for that.</p>
+<span id="more"></span>
+
+<h1 id="C-pointer-and-reference"><a href="#C-pointer-and-reference" class="headerlink" title="C++ pointer and reference"></a>C++ pointer and reference</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a pointer</span></span><br><span class="line"><span class="type">int</span>* pint = &amp;i;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a reference</span></span><br><span class="line"><span class="type">int</span>&amp; rint = i;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Pointers and References are treated in the same way by the compiler</p>
+</blockquote>
+<p><a href="https://stackoverflow.com/questions/11347111/dereferencing-a-pointer-when-passing-by-reference">https://stackoverflow.com/questions/11347111/dereferencing-a-pointer-when-passing-by-reference</a></p>
+<p>If created a reference to a variable (not a pointer), then the address that the reference points to can’t be modified, which is not like a pointer.</p>
+<h1 id="C-Cast"><a href="#C-Cast" class="headerlink" title="C++ Cast"></a>C++ Cast</h1><p><a href="https://stackoverflow.com/questions/28002/regular-cast-vs-static-cast-vs-dynamic-cast">c++ - Regular cast vs. static_cast vs. dynamic_cast - Stack Overflow</a></p>
+<p>Dynamic cast: cast from base class to derived class, but there must be at least one virtual method in the base class.<br>If trying to cast for incompatible classes, it fails and returns a null pointer.</p>
+<p>Static cast: do not check the compatibility of classes cast (? not sure, but the following code will run, which cast CB object into CC object). But will check things like casting an int pointer to a char pointer, to avoid memory error.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">IA</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mp_Print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;IA&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CB</span> : <span class="keyword">public</span> IA &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mp_Print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;CB&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CC</span> : <span class="keyword">public</span> IA &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mp_Print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;CC&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">gp_SomeFunction</span><span class="params">(IA* arg)</span> </span>&#123;</span><br><span class="line">    arg-&gt;<span class="built_in">mp_Print</span>();</span><br><span class="line">    CB* lv_pCast2CB = <span class="built_in">static_cast</span>&lt;CB*&gt;(arg);</span><br><span class="line">    <span class="keyword">if</span> (lv_pCast2CB) &#123;</span><br><span class="line">        lv_pCast2CB-&gt;<span class="built_in">mp_Print</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;null pointer&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CB lv_cb;</span><br><span class="line">    <span class="built_in">gp_SomeFunction</span>(&amp;lv_cb);</span><br><span class="line"></span><br><span class="line">    CC lv_cc;</span><br><span class="line">    <span class="built_in">gp_SomeFunction</span>(&amp;lv_cc);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello World!\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Explicit-constructor"><a href="#Explicit-constructor" class="headerlink" title="Explicit constructor"></a>Explicit constructor</h1><p><a href="https://www.geeksforgeeks.org/use-of-explicit-keyword-in-cpp/">Use of explicit keyword in C++ - GeeksforGeeks</a><br>To prevent implicit type conversion for the constructor that can be called with only one argument</p>
+<h1 id="C-Standard-Terms"><a href="#C-Standard-Terms" class="headerlink" title="C++ Standard Terms"></a>C++ Standard Terms</h1><p>For this I think might be better to read some books consistent with C++ standard terms.</p>
+<p>It is the first time I know that C++ has defined some terms for OO concepts: object, subobject, base class, derived class. Understandable but not the same as usally used in OO programming such as superclass, parent, child, ….</p>
+<p><a href="https://stackoverflow.com/questions/18451683/c-disambiguation-subobject-and-subclass-object">https://stackoverflow.com/questions/18451683/c-disambiguation-subobject-and-subclass-object</a></p>
+]]></content>
+      <categories>
+        <category>programming</category>
+      </categories>
+  </entry>
+  <entry>
     <title>欧洲硕士申请经历</title>
     <url>/2020/08/30/%E6%AC%A7%E6%B4%B2%E7%A1%95%E5%A3%AB%E7%94%B3%E8%AF%B7%E7%BB%8F%E5%8E%86/</url>
     <content><![CDATA[<p>这几篇文章原本是发在B站的，在知乎专栏也备份了，当时B站正好在搞暑期专栏的活动，写了还有点钱拿。虽然最后也就几块钱，但是至少给了我一点点写这几篇总结的动力。后来清B站动态的时候把B站的专栏也删了。现在这些文章已经过了有些时间了，内容也仅供大家参考。</p>
@@ -88,35 +140,19 @@
       </categories>
   </entry>
   <entry>
-    <title>从搬家到入职</title>
-    <url>/2022/09/18/%E4%BB%8E%E6%90%AC%E5%AE%B6%E5%88%B0%E5%85%A5%E8%81%8C/</url>
-    <content><![CDATA[<p>从6月29毕设答辩结束，开始找房子。最开始想找单人的公寓，但是发现确实太贵了，于是又找合租，联系了很多人。到7月26号终于跟一个私人房东谈好了一个两室一厅的房子。</p>
-<span id="more"></span>
-
-<p>记得七月还去找了驾校，最后我觉得在比利时要想用英语考驾照，还不如先学荷兰语，然后用荷兰语去考理论考试。</p>
-<p>在存押金的时候还有个小插曲。我在ING银行开的账户，所以想先去ING办押账户，可是ING的电话一直没人接，我就没法预约去办。然后我又预约了KBC的，一共去了两次，第一次去申请，第二次去开户。</p>
-<p>第二次去的时候，银行柜员说因为是合租所以必须两个人一起签字，说是法律要求。可是室友要到九月才到比利时，所以只能放弃在银行办了。既然是这样最开始申请的时候就应该跟我说啊。</p>
-<p>还好同学JF之前跟我提过政府有个平台可以自助开押金账户，在这个平台上开户就没啥问题，虽然也要填租户，但是只填一个人也行。</p>
-<p>八月初结束了给professor做项目的student job。八月十五号拿到了新租的房子的钥匙，然后就开始搬家。在这期间也抽空同学出去玩，安特卫普、列日、鹿特丹、根特、Ypres。搬家和旅行，都很累。毕竟是最后的暑假了，还是想出去逛一逛。</p>
-<p>因为新家和原来的地方离得比较近，我也没有车，所以就选择自己一点点搬过去。大都是用两个行李箱拖过去，把东西拿出来，然后再回旧家装行李箱。到搬家的最后三天，每天白天在新家等快递，装家具，晚上去旧家打扫卫生，感觉就像在打工。</p>
-<p>在买家具装家具的过程中还碰到了一些麻烦。最开始是准备全部家具都在宜家网站上买，然而在结账的时候，网站才提示我的床和室友的衣柜都不能送到新家的地址。我选的床还是宜家上能买到的最便宜的。想到之前在2dehands的网站上看到过一个卖家具的网站VidaXL的广告，于是去那上面看了看。</p>
-<p>我们在VidaXL上买了布衣柜和床。送过来床的包裹倒是比宜家的家具包裹要小很多，但是重还是一样的重。接下来才是灾难，我买的90cm宽的床，装了好几天，然后发现缺了零件，还需要电钻钻孔。跟我爸打电话然他看了看，我们都觉得质量不咋样，还是退了比较好。我先装好了一个布衣柜，觉得不太稳。而且每次开关还要弯腰上下拉拉链，对腰不好的我来说实在是不友好。最后我在VidaXL上买的东西就都退了，但是室友决定都留下来。</p>
-<p>说来也巧，我刚刚拿到新家的钥匙的那天下午，碰到对门邻居，也是中国人。而且他们也要搬家了，有些家具要处理掉，我就直接从他们那里接手了沙发，餐桌，和客厅的柜子。</p>
-<p>住了一段时间之后就发现房间里的WiFi信号不太行。因为入户的网线在客厅最靠外面，路由器也在那，正好是离房间距离最远的。对门家男主人告诉我Telenet可以提供一个免费的WiFi Booster，于是第二天我就去Telenet店里问了。Telenet最近店里人挺多，排了好一会队，结果店员说他们店里现在也没有，还是得邮寄，要5欧的运费。还不如我直接在Telenet的app上下订单，来店子里就因为不想交这5块钱运费。</p>
-<p>接着就到了CLT第一次荷兰语课的日子。比起刚刚来到比利时的第一学期上ILT的荷兰语课，还是CLT的更实用，而且班级也不大，总共大概20个学生，各种各样的人都有。</p>
-<p>九月十三号的时候收到了公司的邮件，通知我Single Permit通过了，最早第二天就能上班，问我啥时候去。我自然是回答第二天就能去，已经呆在家里太久了。从六月22号到九月13号，花了将近三个月的时间，算是正常的时间。</p>
-<p>以后有时间再写写从学生成为正式的打工人的感想吧。</p>
-]]></content>
-      <categories>
-        <category>life</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C++ Virtual Keyword and Confusion of a Reference Creation Expression</title>
     <url>/2022/09/19/C-Virtual-Keyword-and-Confusion-of-a-Reference-Creation-Expression/</url>
     <content><![CDATA[<p>For the first week I started my job, I mainly review C++ apart from those administration matters.<br>There are some tutorials inside company wiki. When I review the <code>virtual</code> feature of C++, my brain is a little bit of mess. Also, I meet a confusing expression related with reference.<br>Therefore, after I figure out what happened exactly, I decide to write these things for a backup of my memory.</p>
 <span id="more"></span>
+<h2 id="2023-07-23-Update"><a href="#2023-07-23-Update" class="headerlink" title="2023-07-23 Update"></a>2023-07-23 Update</h2><p>前段时间因为试着找国内的工作，看了下C++的面经，正好巩固了些基础知识。当然这十个月的工作中也学了一些C++。现在回过头来看当时的疑惑，其实也就是些基础知识，但是因为没有系统性学C++，所以那时候查起来也有困难。</p>
+<p>现在也能给当时的疑惑一个简单的解答了。AClass&amp; a(anotherObject)，只不过是一种初始化方式，也就是下面的第二种，只不过是初始化一个reference而不是普通的variable：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">a</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> a&#123;<span class="number">1</span>&#125;;</span><br></pre></td></tr></table></figure>
 
+<p><code>virtual</code>关键字用来C++实现动态多态。derived class可以override在base class里使用了virtual关键字的方法。当使用base class的指针指向一个derived class的实例，就可以调用derived class里被override的方法了。</p>
+<p>virtual特性的一种实现是（大多数编译器也是这么做的）：每一个derived class要维护一个virtual table，virtual table里有指向virtual函数的指针。base class有一个virtual table pointer的属性，指向virtual table。到了调用virtual函数的时候，就从virtual table里找对应的函数指针。</p>
+<p>至于virtual table pointer指向哪个地址，我没有深究，但是猜测是derived class在初始化的时候会给base class的virtual table pointer初始化值，指向自己的virtual table。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>When not use <code>virtual</code> to try to override a method (<code>getClassName</code>) in the derived class, as case 2, the pointer <code>p2base</code> of <strong>parent</strong> class type (<code>CMyClass</code>) call the method from <strong>its own class</strong>, NOT the child’s (<code>CMyDerivedClass</code>) method, although <strong>the pointer points to a child class object</strong>.</p>
+<p>After add <code>virtual</code> keyword to the method, the <code>p2base</code> object pointer calls the child’s method. As case 1, this behavior is intuitive as we expect.</p>
 <h2 id="Case-1-virtual-keyword-before-the-methods"><a href="#Case-1-virtual-keyword-before-the-methods" class="headerlink" title="Case 1: virtual keyword before the methods."></a>Case 1: <code>virtual</code> keyword before the methods.</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// the parent class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CMyClass</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line"><span class="comment">// some methods</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">getClassName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;CMyClass&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the child class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CMyDerivedClass</span> : <span class="keyword">public</span> CMyClass &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">getClassName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;CMyDerivedClass&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CMyDerivedClass child;</span><br><span class="line">    </span><br><span class="line">    CMyClass* p2base = &amp;child;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;get class name from parent pointer to child.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; p2base-&gt;<span class="built_in">getClassName</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    CMyDerivedClass* pchild = &amp;child;</span><br><span class="line"></span><br><span class="line">    <span class="function">CMyDerivedClass <span class="title">lv_Test3</span><span class="params">(*pchild)</span></span>;</span><br><span class="line">    <span class="function">CMyClass&amp; <span class="title">lv_Test4</span><span class="params">(*pchild)</span></span>;</span><br><span class="line">    <span class="function">CMyClass <span class="title">lv_Test5</span><span class="params">(*pchild)</span></span>;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;last tests&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;lv_Test3: &quot;</span> &lt;&lt; lv_Test3.<span class="built_in">getClassName</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;lv_Test4: &quot;</span> &lt;&lt; lv_Test4.<span class="built_in">getClassName</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;lv_Test5: &quot;</span> &lt;&lt; lv_Test5.<span class="built_in">getClassName</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>The running result:</p>
@@ -131,40 +167,11 @@
 <p>I thought it would be the same as first create an object of <code>CMyClass</code> and then create an reference to that object. Therefore, I tried the following code</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">CMyClass <span class="title">cp4Test6</span><span class="params">(child)</span></span>;</span><br><span class="line">CMyClass&amp; lv_Test6 = cp4Test6;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;lv_Test4: &quot;</span> &lt;&lt; lv_Test4.<span class="built_in">getClassName</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;lv_Test6: &quot;</span> &lt;&lt; lv_Test6.<span class="built_in">getClassName</span>() &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
 
-<p>Suddenly I came up an idea to check the address of &#96;&#96;</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>When not use <code>virtual</code> to try to override a method (<code>getClassName</code>) in the derived class, as case 2, the pointer <code>p2base</code> of <strong>parent</strong> class type (<code>CMyClass</code>) call the method from <strong>its own class</strong>, NOT the child’s (<code>CMyDerivedClass</code>) method, although <strong>the pointer points to a child class object</strong>.</p>
-<p>After add <code>virtual</code> keyword to the method, the <code>p2base</code> object pointer calls the child’s method. As case 1, this behavior is intuitive as we expect.</p>
+<p>Suddenly I came up an idea to check the address of <code>child</code> and <code>lv_Test4</code> in case 1. It found out that the addresses were the same.</p>
+<p>Therefore, it just created a reference to <code>child</code>.</p>
 <h2 id="Virtual-Override"><a href="#Virtual-Override" class="headerlink" title="Virtual, Override"></a>Virtual, Override</h2><p><a href="https://stackoverflow.com/questions/39932391/should-i-use-virtual-override-or-both-keywords">c++ - Should I use virtual, override, or both keywords? - Stack Overflow</a></p>
 <p>Virtual keyword marks the method in the base class virtual, and the derived class can override the virtual method in the base class. While the derived class does not need to use virtual keyword before the overridden method. If used, it indicates the method can be further overridden in the further derived class.</p>
 <p>The override keyword, only used in the derived class for the method override.</p>
-]]></content>
-      <categories>
-        <category>programming</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>C++ Miscellaneous</title>
-    <url>/2022/09/30/C-Miscellaneous/</url>
-    <content><![CDATA[<p>C++ is really complex, though interesting. There are many details and I think it’s not possible to remember all. This post is to record any useful information I find about C++, and will be kept updating. If there are topics needed to further explanation, I may write a new post specific for that.</p>
-<span id="more"></span>
-
-<h1 id="C-pointer-and-reference"><a href="#C-pointer-and-reference" class="headerlink" title="C++ pointer and reference"></a>C++ pointer and reference</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a pointer</span></span><br><span class="line"><span class="type">int</span>* pint = &amp;i;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a reference</span></span><br><span class="line"><span class="type">int</span>&amp; rint = i;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Pointers and References are treated in the same way by the compiler</p>
-</blockquote>
-<p><a href="https://stackoverflow.com/questions/11347111/dereferencing-a-pointer-when-passing-by-reference">https://stackoverflow.com/questions/11347111/dereferencing-a-pointer-when-passing-by-reference</a></p>
-<p>If created a reference to a variable (not a pointer), then the address that the reference points to can’t be modified, which is not like a pointer.</p>
-<h1 id="C-Cast"><a href="#C-Cast" class="headerlink" title="C++ Cast"></a>C++ Cast</h1><p><a href="https://stackoverflow.com/questions/28002/regular-cast-vs-static-cast-vs-dynamic-cast">c++ - Regular cast vs. static_cast vs. dynamic_cast - Stack Overflow</a></p>
-<p>Dynamic cast: cast from base class to derived class, but there must be at least one virtual method in the base class.<br>If trying to cast for incompatible classes, it fails and returns a null pointer.</p>
-<p>Static cast: do not check the compatibility of classes cast (? not sure, but the following code will run, which cast CB object into CC object). But will check things like casting an int pointer to a char pointer, to avoid memory error.</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">IA</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mp_Print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;IA&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CB</span> : <span class="keyword">public</span> IA &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mp_Print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;CB&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CC</span> : <span class="keyword">public</span> IA &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mp_Print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;CC&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">gp_SomeFunction</span><span class="params">(IA* arg)</span> </span>&#123;</span><br><span class="line">    arg-&gt;<span class="built_in">mp_Print</span>();</span><br><span class="line">    CB* lv_pCast2CB = <span class="built_in">static_cast</span>&lt;CB*&gt;(arg);</span><br><span class="line">    <span class="keyword">if</span> (lv_pCast2CB) &#123;</span><br><span class="line">        lv_pCast2CB-&gt;<span class="built_in">mp_Print</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;null pointer&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CB lv_cb;</span><br><span class="line">    <span class="built_in">gp_SomeFunction</span>(&amp;lv_cb);</span><br><span class="line"></span><br><span class="line">    CC lv_cc;</span><br><span class="line">    <span class="built_in">gp_SomeFunction</span>(&amp;lv_cc);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello World!\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Explicit-constructor"><a href="#Explicit-constructor" class="headerlink" title="Explicit constructor"></a>Explicit constructor</h1><p><a href="https://www.geeksforgeeks.org/use-of-explicit-keyword-in-cpp/">Use of explicit keyword in C++ - GeeksforGeeks</a><br>To prevent implicit type conversion for the constructor that can be called with only one argument</p>
-<h1 id="C-Standard-Terms"><a href="#C-Standard-Terms" class="headerlink" title="C++ Standard Terms"></a>C++ Standard Terms</h1><p>For this I think might be better to read some books consistent with C++ standard terms.</p>
-<p>It is the first time I know that C++ has defined some terms for OO concepts: object, subobject, base class, derived class. Understandable but not the same as usally used in OO programming such as superclass, parent, child, ….</p>
-<p><a href="https://stackoverflow.com/questions/18451683/c-disambiguation-subobject-and-subclass-object">https://stackoverflow.com/questions/18451683/c-disambiguation-subobject-and-subclass-object</a></p>
 ]]></content>
       <categories>
         <category>programming</category>
