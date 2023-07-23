@@ -20,27 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"dinayuil.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="开始工作之后，日程安排也变得更重要了。">
+    <meta name="description" content="在工作的时候遇到了exception如果发生在std::thread里面整个程序会直接崩溃的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sync Between Microsoft 365 Outlook and Personal Calendar">
-<meta property="og:url" content="http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/index.html">
+<meta property="og:title" content="Cpp multi-threading exception on Windows">
+<meta property="og:url" content="http://dinayuil.github.io/2023/07/23/Cpp-multi-threading-on-exception-Windows/index.html">
 <meta property="og:site_name" content="Yandi&#39;s Little World">
-<meta property="og:description" content="开始工作之后，日程安排也变得更重要了。">
+<meta property="og:description" content="在工作的时候遇到了exception如果发生在std::thread里面整个程序会直接崩溃的问题。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-20T17:54:22.000Z">
-<meta property="article:modified_time" content="2022-09-30T19:52:20.451Z">
+<meta property="article:published_time" content="2023-07-23T15:29:26.000Z">
+<meta property="article:modified_time" content="2023-07-23T15:39:07.636Z">
 <meta property="article:author" content="Yandi Liu">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/">
+<link rel="canonical" href="http://dinayuil.github.io/2023/07/23/Cpp-multi-threading-on-exception-Windows/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/","path":"2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/","title":"Sync Between Microsoft 365 Outlook and Personal Calendar"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://dinayuil.github.io/2023/07/23/Cpp-multi-threading-on-exception-Windows/","path":"2023/07/23/Cpp-multi-threading-on-exception-Windows/","title":"Cpp multi-threading exception on Windows"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Sync Between Microsoft 365 Outlook and Personal Calendar | Yandi's Little World</title>
+<title>Cpp multi-threading exception on Windows | Yandi's Little World</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-354MG6H6PY"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-354MG6H6PY","only_pageview":false}</script>
@@ -129,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -142,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#When-exception-happens-in-a-running-std-thread"><span class="nav-number">2.</span> <span class="nav-text">When exception happens in a running std::thread</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Use-Threading-API-Microsoft%E2%80%99s-PPL-rather-than-plain-std-thread"><span class="nav-number">3.</span> <span class="nav-text">Use Threading API (Microsoft’s PPL) rather than plain std::thread</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#std-async-also-use-PPL-API"><span class="nav-number">4.</span> <span class="nav-text">std::async also use PPL API?</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,7 +199,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/">
+    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2023/07/23/Cpp-multi-threading-on-exception-Windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -211,12 +212,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Sync Between Microsoft 365 Outlook and Personal Calendar | Yandi's Little World">
+      <meta itemprop="name" content="Cpp multi-threading exception on Windows | Yandi's Little World">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Sync Between Microsoft 365 Outlook and Personal Calendar
+          Cpp multi-threading exception on Windows
         </h1>
 
         <div class="post-meta-container">
@@ -226,15 +227,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-20 19:54:22" itemprop="dateCreated datePublished" datetime="2022-09-20T19:54:22+02:00">2022-09-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-30 21:52:20" itemprop="dateModified" datetime="2022-09-30T21:52:20+02:00">2022-09-30</time>
+      <time title="Created: 2023-07-23 17:29:26 / Modified: 17:39:07" itemprop="dateCreated datePublished" datetime="2023-07-23T17:29:26+02:00">2023-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,7 +237,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/software/" itemprop="url" rel="index"><span itemprop="name">software</span></a>
+          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">programming</span></a>
         </span>
     </span>
 
@@ -255,8 +250,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/07/23/Cpp-multi-threading-on-exception-Windows/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/23/Cpp-multi-threading-on-exception-Windows/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -267,14 +262,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>782</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span>2 mins.</span>
     </span>
 </div>
 
@@ -284,16 +279,53 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>开始工作之后，日程安排也变得更重要了。</p>
+    <div class="post-body" itemprop="articleBody"><p>在工作的时候遇到了exception如果发生在std::thread里面整个程序会直接崩溃的问题。</p>
 <span id="more"></span>
 
-<p>公司用的是企业版microsoft office 365，邮件和日历自然也就是用Outlook。但是登录都只能在公司内网，或者用VPN，想在手机上看还得用公司的iPhone（<del>还不知道咋申请</del> 后来知道了每个员工的岗位对应一个code，不同的code有不同的配置，我的话就没有配置公司的iPhone）。</p>
-<p>有些私人的事情比如看医生、去市政厅之类的，也得在工作日的工作时间，所以想加一个统一的日历里，方便日程管理。</p>
-<p>在Outlook的Calendar右键菜单看到了可以分享、邮件发送或者publish到WebDav。邮件发送首先可以派出了，因为不能自动同步，每次还得手动导入日程。分享也试过了，要输入分享到哪个邮箱地址，但是输入之后都提示对方的机构没有足够安全的设置所以不能分享。WebDav是我尝试了最久的，昨晚和今早都在找解决方案，Onedrive和坚果云都试过了，都没成功。</p>
-<p>最后我在用webdav calendar的关键词搜索的时候，找到了一个Outlook插件——Outlook CalDav Synchronizer，可以同步Outlook的日历到自定义的CalDav；但是也有更简单的，同步到谷歌日历。用这个插件成功把公司的Outlook日历同步到了我的个人谷歌日历，而且是双向同步。</p>
-<p>这是官网：<br><a target="_blank" rel="noopener" href="https://caldavsynchronizer.org/">https://caldavsynchronizer.org/</a></p>
-<p>官网给了几个配置的教程链接，我follow的这个配置成功了，不过配置的是谷歌日历：<br><a target="_blank" rel="noopener" href="https://www.webdavsystem.com/server/access/caldav/ms_outlook_caldav_synchronizer/">https://www.webdavsystem.com/server/access/caldav/ms_outlook_caldav_synchronizer/</a></p>
-<p>这是插件项目的GitHub地址：<br><a target="_blank" rel="noopener" href="https://github.com/aluxnimm/outlookcaldavsynchronizer">https://github.com/aluxnimm/outlookcaldavsynchronizer</a></p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>感觉要么自己在thread里处理好exception，或者自己包装一下thread（配合promise使用），要么用更高级的API，可以返回运行结果或者exception。</p>
+<h1 id="When-exception-happens-in-a-running-std-thread"><a href="#When-exception-happens-in-a-running-std-thread" class="headerlink" title="When exception happens in a running std::thread"></a>When exception happens in a running std::thread</h1><p>if use std::thread, an exception occurs and not catched inside thread</p>
+<blockquote>
+<p>If no matching handler is found, the function std::terminate() is called<br><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/7272147">https://stackoverflow.com/a/7272147</a><br><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/thread/thread">https://en.cppreference.com/w/cpp/thread/thread</a></p>
+</blockquote>
+<p>By default, terminate() will call abort()</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://cplusplus.com/reference/exception/terminate/">https://cplusplus.com/reference/exception/terminate/</a></p>
+</blockquote>
+<ul>
+<li>cannot catch exception outside the thread where the exception happens<blockquote>
+<p>No you most definitely cannot catch an exception outside of its “thread or origin”. The exception catching depends on stack unwinding, and stack is fundamentally thread-specific.<br><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/7272147">https://stackoverflow.com/a/7272147</a></p>
+</blockquote>
+</li>
+</ul>
+<p>didn’t find a source for “exception catching depends on stack unwinding”</p>
+<ul>
+<li>use std::async instead of std::thread<blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/7273925">https://stackoverflow.com/a/7273925</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> run = []() -&gt; T <span class="comment">// T may be void as above</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// may throw</span></span><br><span class="line">    <span class="keyword">return</span> <span class="comment">/* some T */</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> launched = std::<span class="built_in">async</span>(run);</span><br><span class="line"><span class="comment">// launched has type std::future&lt;T&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// may throw here; nothing bad happens</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// expression has type T and may throw</span></span><br><span class="line"><span class="comment">// will throw whatever was originally thrown in run</span></span><br><span class="line">launched.<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>this way we can get the exception by <code>launched.get()</code> in the parent thread. if not call get(), exception will be ignored (I tested).</p>
+<p>However, async() does not guarantee to use a separate thread</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/thread/async">https://en.cppreference.com/w/cpp/thread/async</a></p>
+</blockquote>
+<ul>
+<li>maybe use std::thread with std::promise and std::future, create a wrapper<blockquote>
+<p><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/thread/promise">https://en.cppreference.com/w/cpp/thread/promise</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="Use-Threading-API-Microsoft’s-PPL-rather-than-plain-std-thread"><a href="#Use-Threading-API-Microsoft’s-PPL-rather-than-plain-std-thread" class="headerlink" title="Use Threading API (Microsoft’s PPL) rather than plain std::thread"></a>Use Threading API (Microsoft’s PPL) rather than plain std::thread</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/25221591">https://stackoverflow.com/a/25221591</a></p>
+</blockquote>
+<h1 id="std-async-also-use-PPL-API"><a href="#std-async-also-use-PPL-API" class="headerlink" title="std::async also use PPL API?"></a>std::async also use PPL API?</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/36914984">https://stackoverflow.com/a/36914984</a></p>
+</blockquote>
+<p>This answer also says <code>concurrency::task</code> has lower efficiency, compared to self-made thread pool with <code>std::thread</code> and <code>std::promise</code>.</p>
+<p>While, in MS document, it only says async use Windows thread pool, and non-conforming with C++ standard</p>
+<blockquote>
+<p>The C++ standard states that if policy is launch::async, the function creates a new thread. However the Microsoft implementation is currently non-conforming. It obtains its threads from the Windows ThreadPool, which in some cases may provide a recycled thread rather than a new one. This means that the launch::async policy is implemented as launch::async|launch::deferred. Another implication of the ThreadPool-based implementation is that there’s no guarantee that thread-local variables will be destroyed when the thread completes. If the thread is recycled and provided to a new call to async, the old variables will still exist. We recommend that you don’t use thread-local variables with async.<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cpp/standard-library/future-functions?view=msvc-170#async">https://learn.microsoft.com/en-us/cpp/standard-library/future-functions?view=msvc-170#async</a></p>
+</blockquote>
 
     </div>
 
@@ -311,7 +343,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/" title="Sync Between Microsoft 365 Outlook and Personal Calendar">http://dinayuil.github.io/2022/09/20/Sync-Between-Microsoft-365-Outlook-and-personal-calendar/</a>
+      <a href="http://dinayuil.github.io/2023/07/23/Cpp-multi-threading-on-exception-Windows/" title="Cpp multi-threading exception on Windows">http://dinayuil.github.io/2023/07/23/Cpp-multi-threading-on-exception-Windows/</a>
   </li>
   <li class="post-copyright-license">
       <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -337,14 +369,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/19/C-Virtual-Keyword-and-Confusion-of-a-Reference-Creation-Expression/" rel="prev" title="C++ Virtual Keyword and Confusion of a Reference Creation Expression">
-                  <i class="fa fa-chevron-left"></i> C++ Virtual Keyword and Confusion of a Reference Creation Expression
+                <a href="/2022/10/30/%E8%87%AA%E8%A1%8C%E8%BD%A6%E8%A2%AB%E5%81%B7%E4%BA%86/" rel="prev" title="自行车被偷了">
+                  <i class="fa fa-chevron-left"></i> 自行车被偷了
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/30/C-Miscellaneous/" rel="next" title="C++ Miscellaneous">
-                  C++ Miscellaneous <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

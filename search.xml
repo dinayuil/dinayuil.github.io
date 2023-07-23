@@ -241,4 +241,59 @@
         <category>life</category>
       </categories>
   </entry>
+  <entry>
+    <title>Cpp multi-threading exception on Windows</title>
+    <url>/2023/07/23/Cpp-multi-threading-on-exception-Windows/</url>
+    <content><![CDATA[<p>在工作的时候遇到了exception如果发生在std::thread里面整个程序会直接崩溃的问题。</p>
+<span id="more"></span>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>感觉要么自己在thread里处理好exception，或者自己包装一下thread（配合promise使用），要么用更高级的API，可以返回运行结果或者exception。</p>
+<h1 id="When-exception-happens-in-a-running-std-thread"><a href="#When-exception-happens-in-a-running-std-thread" class="headerlink" title="When exception happens in a running std::thread"></a>When exception happens in a running std::thread</h1><p>if use std::thread, an exception occurs and not catched inside thread</p>
+<blockquote>
+<p>If no matching handler is found, the function std::terminate() is called<br><a href="https://stackoverflow.com/a/7272147">https://stackoverflow.com/a/7272147</a><br><a href="https://en.cppreference.com/w/cpp/thread/thread">https://en.cppreference.com/w/cpp/thread/thread</a></p>
+</blockquote>
+<p>By default, terminate() will call abort()</p>
+<blockquote>
+<p><a href="https://cplusplus.com/reference/exception/terminate/">https://cplusplus.com/reference/exception/terminate/</a></p>
+</blockquote>
+<ul>
+<li>cannot catch exception outside the thread where the exception happens<blockquote>
+<p>No you most definitely cannot catch an exception outside of its “thread or origin”. The exception catching depends on stack unwinding, and stack is fundamentally thread-specific.<br><a href="https://stackoverflow.com/a/7272147">https://stackoverflow.com/a/7272147</a></p>
+</blockquote>
+</li>
+</ul>
+<p>didn’t find a source for “exception catching depends on stack unwinding”</p>
+<ul>
+<li>use std::async instead of std::thread<blockquote>
+<p><a href="https://stackoverflow.com/a/7273925">https://stackoverflow.com/a/7273925</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> run = []() -&gt; T <span class="comment">// T may be void as above</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// may throw</span></span><br><span class="line">    <span class="keyword">return</span> <span class="comment">/* some T */</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> launched = std::<span class="built_in">async</span>(run);</span><br><span class="line"><span class="comment">// launched has type std::future&lt;T&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// may throw here; nothing bad happens</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// expression has type T and may throw</span></span><br><span class="line"><span class="comment">// will throw whatever was originally thrown in run</span></span><br><span class="line">launched.<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>this way we can get the exception by <code>launched.get()</code> in the parent thread. if not call get(), exception will be ignored (I tested).</p>
+<p>However, async() does not guarantee to use a separate thread</p>
+<blockquote>
+<p><a href="https://en.cppreference.com/w/cpp/thread/async">https://en.cppreference.com/w/cpp/thread/async</a></p>
+</blockquote>
+<ul>
+<li>maybe use std::thread with std::promise and std::future, create a wrapper<blockquote>
+<p><a href="https://en.cppreference.com/w/cpp/thread/promise">https://en.cppreference.com/w/cpp/thread/promise</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="Use-Threading-API-Microsoft’s-PPL-rather-than-plain-std-thread"><a href="#Use-Threading-API-Microsoft’s-PPL-rather-than-plain-std-thread" class="headerlink" title="Use Threading API (Microsoft’s PPL) rather than plain std::thread"></a>Use Threading API (Microsoft’s PPL) rather than plain std::thread</h1><blockquote>
+<p><a href="https://stackoverflow.com/a/25221591">https://stackoverflow.com/a/25221591</a></p>
+</blockquote>
+<h1 id="std-async-also-use-PPL-API"><a href="#std-async-also-use-PPL-API" class="headerlink" title="std::async also use PPL API?"></a>std::async also use PPL API?</h1><blockquote>
+<p><a href="https://stackoverflow.com/a/36914984">https://stackoverflow.com/a/36914984</a></p>
+</blockquote>
+<p>This answer also says <code>concurrency::task</code> has lower efficiency, compared to self-made thread pool with <code>std::thread</code> and <code>std::promise</code>.</p>
+<p>While, in MS document, it only says async use Windows thread pool, and non-conforming with C++ standard</p>
+<blockquote>
+<p>The C++ standard states that if policy is launch::async, the function creates a new thread. However the Microsoft implementation is currently non-conforming. It obtains its threads from the Windows ThreadPool, which in some cases may provide a recycled thread rather than a new one. This means that the launch::async policy is implemented as launch::async|launch::deferred. Another implication of the ThreadPool-based implementation is that there’s no guarantee that thread-local variables will be destroyed when the thread completes. If the thread is recycled and provided to a new call to async, the old variables will still exist. We recommend that you don’t use thread-local variables with async.<br><a href="https://learn.microsoft.com/en-us/cpp/standard-library/future-functions?view=msvc-170#async">https://learn.microsoft.com/en-us/cpp/standard-library/future-functions?view=msvc-170#async</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>programming</category>
+      </categories>
+  </entry>
 </search>
