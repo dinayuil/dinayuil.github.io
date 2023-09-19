@@ -314,4 +314,20 @@
         <category>life</category>
       </categories>
   </entry>
+  <entry>
+    <title>Android Studio: PainterResource Exception - Only VectorDrawables and rasterized asset types are supported ex. PNG, JPG</title>
+    <url>/2023/09/19/Android-Studio-PainterResource-Exception-Only-VectorDrawables-and-rasterized-asset-types-are-supported-ex-PNG-JPG/</url>
+    <content><![CDATA[<p>解决方法：重启Android Studio。</p>
+<p>最近想学一下安卓开发，做几个自己想要的应用。上次做安卓app还是在本科毕设的时候，三年多之前了。找到了谷歌官方的安卓开发教程，就跟着做了，结果到引入图片的时候报错了。</p>
+<span id="more"></span>
+
+<p>就是在painterResource这里报错：Only VectorDrawables and rasterized asset types are supported ex. PNG, JPG</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">Image(</span><br><span class="line">            painter = painterResource(id = R.drawable.androidparty),</span><br><span class="line">            contentDescription = <span class="literal">null</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>反复看了几遍官方代码，并没有什么区别。</p>
+<p>搜到stackoverflow里有人遇到相同的问题，重启Android Studio然后clean build，我就试着重启了下，然后就好了，真无语。</p>
+]]></content>
+      <categories>
+        <category>programming</category>
+      </categories>
+  </entry>
 </search>
