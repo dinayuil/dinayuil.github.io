@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dinayuil.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是Expression（表达式）:  由一个或多个operands（运算对象）组成，对表达式evaluate（求值）会得到一个结果。 最简单的表达式就是literal（字面量）或variable（变量），对它们求职得到的就是字面量或变量的值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="240806 C++ Primer ch4">
+<meta property="og:url" content="http://dinayuil.github.io/2024/08/06/240806-C-Primer-ch4/index.html">
+<meta property="og:site_name" content="Yandi&#39;s Garden">
+<meta property="og:description" content="什么是Expression（表达式）:  由一个或多个operands（运算对象）组成，对表达式evaluate（求值）会得到一个结果。 最简单的表达式就是literal（字面量）或variable（变量），对它们求职得到的就是字面量或变量的值。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-06T15:27:09.000Z">
+<meta property="article:modified_time" content="2025-07-06T23:29:16.000Z">
+<meta property="article:author" content="Yandi Liu">
+<meta property="article:tag" content="software">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="language learning">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dinayuil.github.io/2024/08/06/240806-C-Primer-ch4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://dinayuil.github.io/2024/08/06/240806-C-Primer-ch4/","path":"2024/08/06/240806-C-Primer-ch4/","title":"240806 C++ Primer ch4"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>240806 C++ Primer ch4 | Yandi's Garden</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-354MG6H6PY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-354MG6H6PY","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yandi's Garden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#41-fundamentals"><span class="nav-text"> 4.1 Fundamentals</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#411-basic-concepts"><span class="nav-text"> 4.1.1 Basic Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#overloaded-operators"><span class="nav-text"> Overloaded Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvalues-and-rvalues"><span class="nav-text"> Lvalues and Rvalues</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#412-precedence-and-associativity"><span class="nav-text"> 4.1.2 Precedence and Associativity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#413-order-of-evaluation"><span class="nav-text"> 4.1.3 Order of Evaluation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#42-arithmetic-operators"><span class="nav-text"> 4.2 Arithmetic Operators</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#43-logical-and-relational-operators"><span class="nav-text"> 4.3 Logical and Relational Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logical-and-and-or-operators"><span class="nav-text"> Logical AND and OR Operators</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#44-assignment-operators"><span class="nav-text"> 4.4 Assignment Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4113-explicit-conversions"><span class="nav-text"> 4.11.3 Explicit Conversions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%84%9F%E6%83%B3"><span class="nav-text"> 感想</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yandi Liu</p>
+  <div class="site-description" itemprop="description">Work hard, Play hard!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dinayuil" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dinayuil" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yandi-liu-a82bbb156/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yandi-liu-a82bbb156&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2024/08/06/240806-C-Primer-ch4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yandi Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yandi's Garden">
+      <meta itemprop="description" content="Work hard, Play hard!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="240806 C++ Primer ch4 | Yandi's Garden">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          240806 C++ Primer ch4
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-08-06 17:27:09" itemprop="dateCreated datePublished" datetime="2024-08-06T17:27:09+02:00">2024-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-07-07 01:29:16" itemprop="dateModified" datetime="2025-07-07T01:29:16+02:00">2025-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2024/08/06/240806-C-Primer-ch4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/08/06/240806-C-Primer-ch4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>什么是Expression（表达式）:</p>
+<ul>
+<li>由一个或多个<strong>operands</strong>（运算对象）组成，对表达式evaluate（求值）会得到一个结果。</li>
+<li>最简单的表达式就是literal（字面量）或variable（变量），对它们求职得到的就是字面量或变量的值。</li>
+</ul>
+<span id="more"></span>
+<h1 id="41-fundamentals"><a class="markdownIt-Anchor" href="#41-fundamentals"></a> 4.1 Fundamentals</h1>
+<h2 id="411-basic-concepts"><a class="markdownIt-Anchor" href="#411-basic-concepts"></a> 4.1.1 Basic Concepts</h2>
+<p>function call <code>()</code> 也是一个operator（运算符），而且它的运算对象的个数没有限制。</p>
+<h3 id="overloaded-operators"><a class="markdownIt-Anchor" href="#overloaded-operators"></a> Overloaded Operators</h3>
+<p>对于class type（类类型），虽然我们可以overload（重载）运算符，但是运算符的运算对象的个数，precedence（优先级），associativity（结合律）都是不能改变的。</p>
+<h3 id="lvalues-and-rvalues"><a class="markdownIt-Anchor" href="#lvalues-and-rvalues"></a> Lvalues and Rvalues</h3>
+<p>Lvalue（左值）和Rvalue(右值)，是从C语言继承来的名词。原本意义是，左值可以放在assignment的左边，ravalue不行。</p>
+<p>但是在C++里，左值和右值的意义就比较复杂。粗略的说，当我们使用一个左值，我们使用的是这个object（对象）的identity（身份）（内存中的位置）；当我们使用一个右值，我们用的是这个对象的值。</p>
+<p>但不论如何，我们讨论左值和右值的时候，都是在讨论<strong>表达式</strong>，而不是在讨论变量或者其他。</p>
+<h2 id="412-precedence-and-associativity"><a class="markdownIt-Anchor" href="#412-precedence-and-associativity"></a> 4.1.2 Precedence and Associativity</h2>
+<p>优先级也好，结合律也好，要讨论它们，得是在有多个运算符的情况下才能体现意义。</p>
+<p>优先级是指运算对象组合的紧密程度。高优先级的运算符比低优先级的运算符更能组合运算对象。比如<code>1+2*3</code>，<code>*</code>优先级更高，它能组合2和3，而<code>+</code>的优先级低，它就不能组合1和2，而只能组合1和<code>2*3</code>的结果。</p>
+<p>结合律是指在有相同优先级的运算符出现的情况下，运算对象该从左往右还是从右往左进行组合。比如<code>1+2+3</code>，它是left associative，也就是从左往右组合，先是组合1和2，然后是组合<code>1+2</code>的结果和3。</p>
+<h2 id="413-order-of-evaluation"><a class="markdownIt-Anchor" href="#413-order-of-evaluation"></a> 4.1.3 Order of Evaluation</h2>
+<p>优先级和结合律只规定了运算对象怎么组合，但是没有说它们<strong>被求值的顺序</strong>。</p>
+<p>比如f、g、h是三个函数，在这个表达式<code>f()+g()*h()</code>里，f()、g()、h()哪个会先被求值我们是无法知道的。</p>
+<p>在这种情况下，如果一个表达式里同时使用并改变了一个对象，求值结果是undefined（未定义的）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; ++i &lt;&lt; endl; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果左边的i先被求值，然后右边的<code>++i</code>才被求值，输出的结果是<code>0 1</code>。</li>
+<li>如果右边的<code>++i</code>先被求值，输出的结果是<code>1 1</code>。</li>
+</ul>
+<blockquote>
+<p>Order of evaluation for most of the binary operators is left undefined to give the compiler opportunities for optimization.</p>
+</blockquote>
+<p>大多是二元运算符evaluation（求值）的顺序是未定义的，这是为了给编译器进行优化的空间。</p>
+<h1 id="42-arithmetic-operators"><a class="markdownIt-Anchor" href="#42-arithmetic-operators"></a> 4.2 Arithmetic Operators</h1>
+<p>所有 arithmetic type（算术类型），或者可以被转换成算术类型的运算对象，都能用Arithmetic Operator（算术运算符）。</p>
+<p>算术运算符的运算对象和结果都是<strong>右值</strong>。</p>
+<p>有些算术表达式的结果是未定义的。而且往往没有编译警告或者运行时警告。</p>
+<blockquote>
+<p>Consider amachine onwhich shorts are 16 bits. In that case, themaximum short is 32767. On such a machine, the following compound assignment overflows:</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// EN p140</span></span><br><span class="line"><span class="type">short</span> short_value = <span class="number">32767</span>; <span class="comment">// max value if shorts are 16 bits</span></span><br><span class="line">short_value += <span class="number">1</span>; <span class="comment">// this calculation overflows</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;short_value: &quot;</span> &lt;&lt; short_value &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The assignment to short_value is undefined.</p>
+</blockquote>
+<p>关于<code>%</code>运算符（取余或取模运算符），详见另一篇“取模运算的一些发现”文章。</p>
+<h1 id="43-logical-and-relational-operators"><a class="markdownIt-Anchor" href="#43-logical-and-relational-operators"></a> 4.3 Logical and Relational Operators</h1>
+<h2 id="logical-and-and-or-operators"><a class="markdownIt-Anchor" href="#logical-and-and-or-operators"></a> Logical AND and OR Operators</h2>
+<p><code>&amp;&amp;</code>，<code>||</code>这两个运算符规定了运算顺序，求值顺序是先对左边运算对象求值，然后根据结果再看要不要对右边的运算对象求值。</p>
+<h1 id="44-assignment-operators"><a class="markdownIt-Anchor" href="#44-assignment-operators"></a> 4.4 Assignment Operators</h1>
+<h2 id="4113-explicit-conversions"><a class="markdownIt-Anchor" href="#4113-explicit-conversions"></a> 4.11.3 Explicit Conversions</h2>
+<p>static_cast and reinterpret_cast both can convert a void pointer to other type pointer, but only reinterpret_cast can convert between two unrelated type pointer.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *pc;</span><br><span class="line"><span class="type">void</span> *pv;</span><br><span class="line"></span><br><span class="line">pc = <span class="built_in">static_cast</span>&lt;<span class="type">char</span> *&gt;(pv);   <span class="comment">// OK</span></span><br><span class="line">pc = <span class="built_in">reinterpret_cast</span>&lt;<span class="type">char</span> *&gt;(pv);  <span class="comment">// OK</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *pc;</span><br><span class="line"><span class="type">int</span> *pv;</span><br><span class="line"></span><br><span class="line">pc = <span class="built_in">static_cast</span>&lt;<span class="type">char</span> *&gt;(pv);   <span class="comment">// compile error, invalid ‘static_cast’ from type ‘int*’ to type ‘char*’</span></span><br><span class="line">pc = <span class="built_in">reinterpret_cast</span>&lt;<span class="type">char</span> *&gt;(pv);  <span class="comment">// OK</span></span><br></pre></td></tr></table></figure>
+<h1 id="感想"><a class="markdownIt-Anchor" href="#感想"></a> 感想</h1>
+<p>第四章章节看起来挺多的，其实读起来感觉也没有很多，只是很杂，因为讲了很多不同的操作符</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Yandi Liu
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="http://dinayuil.github.io/2024/08/06/240806-C-Primer-ch4/" title="240806 C++ Primer ch4">http://dinayuil.github.io/2024/08/06/240806-C-Primer-ch4/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_linkedin"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_evernote"></a>
+      <a class="a2a_button_wechat"></a>
+      <a class="a2a_button_qzone"></a>
+      <a class="a2a_button_sina_weibo"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_email"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/01/240801-Why-stdcin-can-be-used-in-while-loop-condition/" rel="prev" title="240801 Why std::cin can be used in while loop condition">
+                  <i class="fa fa-chevron-left"></i> 240801 Why std::cin can be used in while loop condition
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/08/17/240817-C-%E5%B8%B8%E8%A7%81-Initialization/" rel="next" title="240817 C++ 常见 Initialization">
+                  240817 C++ 常见 Initialization <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yandi Liu</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">145k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:12</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"yandis-little-world","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
