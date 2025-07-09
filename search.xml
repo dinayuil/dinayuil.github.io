@@ -3397,8 +3397,29 @@ Settings &gt; Text Editor &gt; Suggestions &gt; Accept Suggestions On Enter &gt;
       </categories>
   </entry>
   <entry>
-    <title>250624 Compressed Sensing math</title>
-    <url>/2025/06/24/250624-Compressed-Sensing-math/</url>
+    <title>250709 hexo-renderer-pandoc 报错 </title>
+    <url>/2025/07/08/250709-hexo-renderer-pandoc-%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<p>在处理一篇包含很多latex数学公式的post时出现了如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Error: </span><br><span class="line">[ERROR][hexo-renderer-pandoc] On D:\codedir\blog_source\source\_posts\250624-Compressed-Sensing-math.md</span><br><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code 64: Error parsing YAML metadata at (line 407, column 1):</span><br><span class="line">YAML parse exception at line 7, column 74:</span><br><span class="line">mapping values are not allowed in this context</span><br><span class="line"></span><br><span class="line">    at Hexo.pandocRenderer (D:\codedir\blog_source\node_modules\hexo-renderer-pandoc\lib\renderer.js:47:9)</span><br><span class="line">    at Hexo.tryCatcher (D:\codedir\blog_source\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (D:\codedir\blog_source\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at D:\codedir\blog_source\node_modules\hexo\dist\hexo\render.js:73:28</span><br><span class="line">    at tryCatcher (D:\codedir\blog_source\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:547:31)</span><br><span class="line">    at Promise._settlePromise (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:604:18)</span><br><span class="line">    at Promise._settlePromiseCtx (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:641:10)</span><br><span class="line">    at _drainQueueStep (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:97:12)</span><br><span class="line">    at _drainQueue (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:86:9)</span><br><span class="line">    at Async._drainQueues (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:102:5)</span><br><span class="line">    at Async.drainQueues [as _onImmediate] (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:15:14)</span><br><span class="line">    at process.processImmediate (node:internal/timers:485:21)</span><br></pre></td></tr></table></figure>
+<p>看错误提示，开始以为是front-matter的问题，试了好几种格式，还从YAML换成了JSON，都没用。</p>
+<p>后来才发现只是这一篇文档有问题，其他的文档都能正常编译。试着注释掉文档里的部分内容，虽然不能精准定位到到底是哪里出了问题，但是可以确定的是hexo-renderer-pandoc肯定是把部分文档内容识别成了front-matter。</p>
+<p>于是尝试更换renderer，因为我用的是Next主题，Next主题支持两个数学公式引擎：MathJax和KaTex，前者好像兼容性更好些。但问题就在这里，使用MathJax的话就需要使用hexo-renderer-pandoc，如果使用KaTex，可以把renderer换成hexo-renderer-markdown-it-plus或者hexo-renderer-markdown-it。</p>
+<p><a href="https://theme-next.js.org/docs/third-party-services/math-equations">https://theme-next.js.org/docs/third-party-services/math-equations</a><br />
+看起来使用hexo-renderer-markdown-it-plus方便点。按照文档里的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked</span><br><span class="line">npm i hexo-renderer-markdown-it-plus</span><br></pre></td></tr></table></figure>
+<p>不过因为我现在的renderer是hexo-renderer-pandoc，所以第一条命令改成了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>更换了renderer之后终于可以正常编译了。<br />
+真无语，花了两个小时才解决。</p>
+]]></content>
+      <categories>
+        <category>sw-hw</category>
+        <category>杂</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>250624 Compressed Sensing Chapter 1 note</title>
+    <url>/2025/06/24/250624-Compressed-Sensing-Chapter-1-note/</url>
     <content><![CDATA[<h1 id="fundamental-concepts-from-set-theory-linear-algebra"><a class="markdownIt-Anchor" href="#fundamental-concepts-from-set-theory-linear-algebra"></a> <strong>Fundamental Concepts from Set Theory &amp; Linear Algebra</strong></h1>
 <ul>
 <li>
@@ -4780,27 +4801,6 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 ]]></content>
       <categories>
         <category>research</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>250709 hexo-renderer-pandoc 报错 </title>
-    <url>/2025/07/08/250709-hexo-renderer-pandoc-%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<p>在处理一篇包含很多latex数学公式的post时出现了如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Error: </span><br><span class="line">[ERROR][hexo-renderer-pandoc] On D:\codedir\blog_source\source\_posts\250624-Compressed-Sensing-math.md</span><br><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code 64: Error parsing YAML metadata at (line 407, column 1):</span><br><span class="line">YAML parse exception at line 7, column 74:</span><br><span class="line">mapping values are not allowed in this context</span><br><span class="line"></span><br><span class="line">    at Hexo.pandocRenderer (D:\codedir\blog_source\node_modules\hexo-renderer-pandoc\lib\renderer.js:47:9)</span><br><span class="line">    at Hexo.tryCatcher (D:\codedir\blog_source\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (D:\codedir\blog_source\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at D:\codedir\blog_source\node_modules\hexo\dist\hexo\render.js:73:28</span><br><span class="line">    at tryCatcher (D:\codedir\blog_source\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:547:31)</span><br><span class="line">    at Promise._settlePromise (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:604:18)</span><br><span class="line">    at Promise._settlePromiseCtx (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:641:10)</span><br><span class="line">    at _drainQueueStep (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:97:12)</span><br><span class="line">    at _drainQueue (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:86:9)</span><br><span class="line">    at Async._drainQueues (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:102:5)</span><br><span class="line">    at Async.drainQueues [as _onImmediate] (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:15:14)</span><br><span class="line">    at process.processImmediate (node:internal/timers:485:21)</span><br></pre></td></tr></table></figure>
-<p>看错误提示，开始以为是front-matter的问题，试了好几种格式，还从YAML换成了JSON，都没用。</p>
-<p>后来才发现只是这一篇文档有问题，其他的文档都能正常编译。试着注释掉文档里的部分内容，虽然不能精准定位到到底是哪里出了问题，但是可以确定的是hexo-renderer-pandoc肯定是把部分文档内容识别成了front-matter。</p>
-<p>于是尝试更换renderer，因为我用的是Next主题，Next主题支持两个数学公式引擎：MathJax和KaTex，前者好像兼容性更好些。但问题就在这里，使用MathJax的话就需要使用hexo-renderer-pandoc，如果使用KaTex，可以把renderer换成hexo-renderer-markdown-it-plus或者hexo-renderer-markdown-it。</p>
-<p><a href="https://theme-next.js.org/docs/third-party-services/math-equations">https://theme-next.js.org/docs/third-party-services/math-equations</a><br />
-看起来使用hexo-renderer-markdown-it-plus方便点。按照文档里的命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked</span><br><span class="line">npm i hexo-renderer-markdown-it-plus</span><br></pre></td></tr></table></figure>
-<p>不过因为我现在的renderer是hexo-renderer-pandoc，所以第一条命令改成了</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
-<p>更换了renderer之后终于可以正常编译了。<br />
-真无语，花了两个小时才解决。</p>
-]]></content>
-      <categories>
-        <category>sw-hw</category>
-        <category>杂</category>
       </categories>
   </entry>
 </search>
