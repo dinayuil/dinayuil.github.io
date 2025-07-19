@@ -5162,4 +5162,37 @@ the old version; use ‘systemctl daemon-reload’ to reload.</p>
         <category>生活</category>
       </categories>
   </entry>
+  <entry>
+    <title>250720 做了个Joplin笔记转Hexo post工具</title>
+    <url>/2025/07/19/250720-%E5%81%9A%E4%BA%86%E4%B8%AAjoplin%E7%AC%94%E8%AE%B0%E8%BD%AChexo-post%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p>用 Joplin 记笔记很久了，但每次想把写好的笔记发布到 Hexo 博客，过程都挺麻烦的。特别是涉及到图片的笔记，还得手动改链接</p>
+<p>其实之前也不是没找过自动化的解决方案，比如这个<a href="https://github.com/mark-magic/mark-magic">https://github.com/mark-magic/mark-magic</a><br />
+以及它的前身。算是断断续续有在关注这个项目的进展，最开始的时候还只能用在新建Hexo博客上，现在已经可以支持已有的Hexo博客了。而且不止Hexo，这是一个基于 NodeJS 的优秀工具，目标很宏大，要做成一个通用的数据连接和转换工具，能处理像 Joplin 到 Hugo、Joplin 到 Jekyll，甚至打包小说成 ePub 电子书的各种工作流。</p>
+<p>然而，它的强大功能对我这个特定的需求来说，也意味着复杂。在我试过mark-magic后，发现数学公式渲染有问题。看到Github的issue区有人碰到了同样的问题，通过LLM帮忙，我给出了一个可能的修复方案，但我对 NodeJS 开发环境实在不熟，想在本地跑起来测试一下都费劲，更别提按自己的想法去定制了。好消息是作者已经采纳了我的建议修复了这个bug。<br />
+不过另外一个问题是，如果Joplin的笔记开头就是一级标题<code>#</code>的话，转换成Hexo post，这个标题会被删掉，我看代码里特地有一块处理这个的，不知道原因。</p>
+<p>再去学NodeJS开发不太实际，但是既然感觉别人的轮子用不顺手，就想有没有Python的解决方案，没有的话或许可以自己造一个。幸运的是确实有Joplin Python API，<a href="https://github.com/marph91/joppy">joppy</a>。有了这个就可以开始做脚本了。</p>
+<p>当然我的目标只是要创建一个简单的脚本，只做好一件事：把我的 Joplin 笔记转换成 Hexo 博文。我借鉴了 mark-magic 一些idea，比如按标签筛选、按笔记本生成分类、以及在生成前清空目录等，然后用 Python 实现了它们。也就是说，这个脚本主要满足了有下面的需求：</p>
+<ul>
+<li>
+<p>按标签筛选： 我不想发布我写的每一篇笔记。脚本需要能找到那些被标记了“blog”标签的笔记。</p>
+</li>
+<li>
+<p>处理图片： 手动导出图片、重命名、更新链接是最繁琐的部分。脚本必须能完全自动化这个过程。</p>
+</li>
+<li>
+<p>保留分类： 在 Joplin 中，我用嵌套的笔记本（如 技术 -&gt; Python）来组织笔记。自然希望能自动将这个结构转换成 Hexo 的分类。</p>
+</li>
+<li>
+<p>简单且可靠： 每次都执行一次“全新构建”（删除所有之前生成的文件，生成全新的Hexo post文件），确保博客内容和我的笔记保持一致。</p>
+</li>
+</ul>
+<p>同样在LLM的帮助下，花了几个晚上，Joplin-to-Hexo 终于算是可以发布了，虽然再发布之前我自己已经试过好几次了。它连接到 Joplin API（感谢 <a href="https://github.com/marph91/joppy">joppy</a> ），找到笔记，下载所有链接的图片，并生成可直接发布的 Markdown 文件。</p>
+<p>具体如何使用，在我的Github仓库readme中已经写得很清楚了，快来试试吧，欢迎反馈和issue。<br />
+项目地址：<a href="https://github.com/dinayuil/joplin-to-hexo">https://github.com/dinayuil/joplin-to-hexo</a></p>
+]]></content>
+      <categories>
+        <category>sw-hw</category>
+        <category>杂</category>
+      </categories>
+  </entry>
 </search>

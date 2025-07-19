@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -189,6 +189,129 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2025/07/08/250709-hexo-renderer-pandoc-%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yandi Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yandi's Garden">
+      <meta itemprop="description" content="Work hard, Play hard!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yandi's Garden">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/07/08/250709-hexo-renderer-pandoc-%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">250709 hexo-renderer-pandoc 报错 </a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-07-08 23:45:06 / Modified: 23:58:01" itemprop="dateCreated datePublished" datetime="2025-07-08T23:45:06+02:00">2025-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/sw-hw/" itemprop="url" rel="index"><span itemprop="name">sw-hw</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/sw-hw/%E6%9D%82/" itemprop="url" rel="index"><span itemprop="name">杂</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2025/07/08/250709-hexo-renderer-pandoc-%E6%8A%A5%E9%94%99/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2025/07/08/250709-hexo-renderer-pandoc-报错/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在处理一篇包含很多latex数学公式的post时出现了如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Error: </span><br><span class="line">[ERROR][hexo-renderer-pandoc] On D:\codedir\blog_source\source\_posts\250624-Compressed-Sensing-math.md</span><br><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code 64: Error parsing YAML metadata at (line 407, column 1):</span><br><span class="line">YAML parse exception at line 7, column 74:</span><br><span class="line">mapping values are not allowed in this context</span><br><span class="line"></span><br><span class="line">    at Hexo.pandocRenderer (D:\codedir\blog_source\node_modules\hexo-renderer-pandoc\lib\renderer.js:47:9)</span><br><span class="line">    at Hexo.tryCatcher (D:\codedir\blog_source\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (D:\codedir\blog_source\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at D:\codedir\blog_source\node_modules\hexo\dist\hexo\render.js:73:28</span><br><span class="line">    at tryCatcher (D:\codedir\blog_source\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:547:31)</span><br><span class="line">    at Promise._settlePromise (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:604:18)</span><br><span class="line">    at Promise._settlePromiseCtx (D:\codedir\blog_source\node_modules\bluebird\js\release\promise.js:641:10)</span><br><span class="line">    at _drainQueueStep (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:97:12)</span><br><span class="line">    at _drainQueue (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:86:9)</span><br><span class="line">    at Async._drainQueues (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:102:5)</span><br><span class="line">    at Async.drainQueues [as _onImmediate] (D:\codedir\blog_source\node_modules\bluebird\js\release\async.js:15:14)</span><br><span class="line">    at process.processImmediate (node:internal/timers:485:21)</span><br></pre></td></tr></table></figure>
+<p>看错误提示，开始以为是front-matter的问题，试了好几种格式，还从YAML换成了JSON，都没用。</p>
+<p>后来才发现只是这一篇文档有问题，其他的文档都能正常编译。试着注释掉文档里的部分内容，虽然不能精准定位到到底是哪里出了问题，但是可以确定的是hexo-renderer-pandoc肯定是把部分文档内容识别成了front-matter。</p>
+<p>于是尝试更换renderer，因为我用的是Next主题，Next主题支持两个数学公式引擎：MathJax和KaTex，前者好像兼容性更好些。但问题就在这里，使用MathJax的话就需要使用hexo-renderer-pandoc，如果使用KaTex，可以把renderer换成hexo-renderer-markdown-it-plus或者hexo-renderer-markdown-it。</p>
+<p><a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/third-party-services/math-equations">https://theme-next.js.org/docs/third-party-services/math-equations</a><br />
+看起来使用hexo-renderer-markdown-it-plus方便点。按照文档里的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-marked</span><br><span class="line">npm i hexo-renderer-markdown-it-plus</span><br></pre></td></tr></table></figure>
+<p>不过因为我现在的renderer是hexo-renderer-pandoc，所以第一条命令改成了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>更换了renderer之后终于可以正常编译了。<br />
+真无语，花了两个小时才解决。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2058,217 +2181,6 @@ Settings &gt; Text Editor &gt; Suggestions &gt; Accept Suggestions On Enter &gt;
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2025/03/13/250313-ns-3-%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yandi Liu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yandi's Garden">
-      <meta itemprop="description" content="Work hard, Play hard!">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Yandi's Garden">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/13/250313-ns-3-%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">250313 NS-3 安装</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-03-13 15:20:00" itemprop="dateCreated datePublished" datetime="2025-03-13T15:20:00+01:00">2025-03-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-04 08:41:01" itemprop="dateModified" datetime="2025-07-04T08:41:01+02:00">2025-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/research/" itemprop="url" rel="index"><span itemprop="name">research</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/research/ns3/" itemprop="url" rel="index"><span itemprop="name">ns3</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2025/03/13/250313-ns-3-%E5%AE%89%E8%A3%85/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2025/03/13/250313-ns-3-安装/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>2.9k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>开始用Ubuntu 20.04 server，但是发现g++版本是9.4，不够NS-3的最低要求</p>
-<p>根据这个回答<br />
-<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1500553/how-to-install-g12-on-ubuntu-20-04-6">https://askubuntu.com/questions/1500553/how-to-install-g12-on-ubuntu-20-04-6</a><br />
-最好还是直接升级到ubuntu 22.04然后升级g++</p>
-<p>因为之后可能需要可视化网络拓扑，所以server还得装上桌面，感觉不如一开始直接安装ubuntu desktop版本。看网上视频教程有推荐用server的，不过没说原因。</p>
-<p>总之系统搞定了就要装依赖和软件了。很多NS-3安装教程都有些年头了，但是从3.36版本开始，NS-3的构建工具改成了CMake，之前的安装教程都不适用了。</p>
-<p>不过还是找到了一个新一点的教程：<br />
-<a target="_blank" rel="noopener" href="https://youtu.be/BpfF-ZaFSJ8?si=5lnVLBHkV7eYMTWS">https://youtu.be/BpfF-ZaFSJ8?si=5lnVLBHkV7eYMTWS</a></p>
-<ol>
-<li>先安装一些依赖，虽然不一定都用得上。</li>
-</ol>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo apt install g++ python3 cmake ninja-build git gir1.2-goocanvas-2.0 python3-gi python3-gi-cairo python3-pygraphviz gir1.2-gtk-3.0 ipython3 tcpdump wireshark sqlite sqlite3 libsqlite3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools openmpi-bin openmpi-common openmpi-doc libopenmpi-dev doxygen graphviz imagemagick python3-sphinx dia imagemagick texlive dvipng latexmk texlive-extra-utils texlive-latex-extra texlive-font-utils libeigen3-dev gsl-bin libgsl-dev libgslcblas0 libxml2 libxml2-dev libgtk-3-dev lxc-utils lxc-templates vtun uml-utilities ebtables bridge-utils libxml2 libxml2-dev libboost-all-dev ccache</span></span><br></pre></td></tr></table></figure>
-<p>这之后其实跟着官方教程走就行<br />
-<a target="_blank" rel="noopener" href="https://www.nsnam.org/docs/tutorial/html/quick-start.html">https://www.nsnam.org/docs/tutorial/html/quick-start.html</a></p>
-<ol start="2">
-<li>下载NS-3的release版本，也就是官网上的tar包版本。</li>
-</ol>
-<p>解压之后的目录下类似这样</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~/ns-allinone-3.43$ ls</span><br><span class="line">bake  build.py  constants.py  netanim-3.109  ns-3.43  README.md  util.py</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>配置构建系统</li>
-</ol>
-<p>进入<code>ns-3.43</code>目录，可以看到类似内容</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~/ns-allinone-3.43/ns-3.43$ ls</span><br><span class="line">AUTHORS   build-support  CMakeLists.txt   doc       LICENSES     pyproject.toml    scratch    src            utils</span><br><span class="line">bindings  CHANGES.md     contrib          examples  ns3          README.md         setup.cfg  test.py        utils.py</span><br><span class="line">build     cmake-cache    CONTRIBUTING.md  LICENSE   __pycache__  RELEASE_NOTES.md  setup.py   testpy-output  VERSION</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>配置构建系统</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 configure --enable-examples --enable-tests</span></span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>build</li>
-</ol>
-<p>这一步可能要花很久</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 build</span></span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>运行测试</li>
-</ol>
-<p>这一步也可能要花很久，这一步不是必须的，只是检查编译完的程序有没有问题</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./test.py</span></span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>运行例程</li>
-</ol>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 run first</span></span><br></pre></td></tr></table></figure>
-<p>如果成功运行可以看到类似如下输出</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[0/2] Re-checking globbed directories...</span><br><span class="line">ninja: no work to do.</span><br><span class="line">At time +2s client sent 1024 bytes to 10.1.1.2 port 9</span><br><span class="line">At time +2.00369s server received 1024 bytes from 10.1.1.1 port 49153</span><br><span class="line">At time +2.00369s server sent 1024 bytes to 10.1.1.1 port 49153</span><br><span class="line">At time +2.00737s client received 1024 bytes from 10.1.1.2 port 9</span><br></pre></td></tr></table></figure>
-<h1 id="more-about-build"><a class="markdownIt-Anchor" href="#more-about-build"></a> more about build</h1>
-<p>如果切换了build profile，在重新build之前最好先clean一下。但是实测完整的build需要花二三十分钟，当然这跟处理器性能有关。</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 clean</span></span><br></pre></td></tr></table></figure>
-<h2 id="build-profile"><a class="markdownIt-Anchor" href="#build-profile"></a> build profile</h2>
-<p>build有几种profile，debug，default（default好像就是debug），release，optimized。</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>debug</th>
-<th>default</th>
-<th>release</th>
-<th>optimized</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Enabled Features</strong></td>
-<td><code>NS3_BUILD_PROFILE_DEBUG</code></td>
-<td><code>NS3_BUILD_PROFILE_DEBUG</code></td>
-<td><code>NS3_BUILD_PROFILE_RELEASE</code></td>
-<td><code>NS3_BUILD_PROFILE_OPTIMIZED</code></td>
-</tr>
-<tr>
-<td></td>
-<td><code>NS_LOG... NS_ASSERT...</code></td>
-<td><code>NS_LOG... NS_ASSERT...</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Code Wrapper Macro</strong></td>
-<td><code>NS_BUILD_DEBUG(code)</code></td>
-<td><code>NS_BUILD_DEBUG(code)</code></td>
-<td><code>NS_BUILD_RELEASE(code)</code></td>
-<td><code>NS_BUILD_OPTIMIZED(code)</code></td>
-</tr>
-<tr>
-<td><strong>Compiler Flags</strong></td>
-<td><code>-Og -g</code></td>
-<td><code>-Os -g</code></td>
-<td><code>-O3</code></td>
-<td><code>-O3</code> <code>-march=native</code> <code>-mtune=native</code></td>
-</tr>
-</tbody>
-</table>
-<p>官方也建议在开发的时候先用debug，之后重复跑模拟再用optimized。</p>
-<blockquote>
-<p>Recommended practice is to develop your scenario in <strong>debug mode</strong>, then conduct repetitive runs (for statistics or changing parameters) in optimized build profile.</p>
-</blockquote>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 configure --build-profile=debug --enable-examples --enable-tests</span></span><br></pre></td></tr></table></figure>
-<p>可以对不同的profile设置不同的output文件夹，这样的话切换profile不用重新编译所有文件了。</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 configure --build-profile=debug --out=build/debug</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 build</span></span><br><span class="line">...</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 configure --build-profile=optimized --out=build/optimized</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ns3 build</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -2292,13 +2204,13 @@ Settings &gt; Text Editor &gt; Suggestions &gt; Accept Suggestions On Enter &gt;
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">165k</span>
+    <span title="Word count total">166k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:30</span>
+    <span title="Reading time total">2:31</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
