@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dinayuil.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="设置简介 主机操作系统是windows 10。使用VMWare workstation虚拟机安装Ubuntu Server 20.04。VS Code安装一些插件，SSH连接到ubuntu虚拟机进行ESP32的开发。VS Code只负责编辑代码，其他操作（创建项目、配置、编译、烧录等）使用ESP-IDF的命令行命令。 参考了B站教程 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="250106 搭建ESP32 开发环境 ESP-IDF, VMware, VS Code, Ubuntu Server">
+<meta property="og:url" content="http://dinayuil.github.io/2025/01/06/250106-%E6%90%AD%E5%BB%BAesp32-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-esp-idf-vmware-vs-code-ubuntu-server/index.html">
+<meta property="og:site_name" content="Yandi&#39;s Garden">
+<meta property="og:description" content="设置简介 主机操作系统是windows 10。使用VMWare workstation虚拟机安装Ubuntu Server 20.04。VS Code安装一些插件，SSH连接到ubuntu虚拟机进行ESP32的开发。VS Code只负责编辑代码，其他操作（创建项目、配置、编译、烧录等）使用ESP-IDF的命令行命令。 参考了B站教程 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://dinayuil.github.io/resources/5c9e7ab906b0448d8c50f8e50a509c52.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/498f5404605b4f799319d2c67b500585.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/94d498ba90ae491e90a0b4c51e0df44d.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/a8ea099b4bd54e7f862e5017829df6df.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/bc74b27d4b7c4f6fa4d8092ba4c598ea.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/5349ecf39a914b71a68b9683be06fc99.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/573929b3d54c467bbe9420a9359f9c65.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/ed80ebc21c474cffbe893829e13f29e3.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/1986d0fae99044239ef0b4c8eaf57370.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/d5888e209de44ff8bb75ed61daaaa37b.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/6aa9a39c42d146b5a82f331cfada09da.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/9b730fcf17914e31a8c4f77030449022.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/9ffd864e877445309cc860290acef463.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/666aa93caa6141e0ad79fed5c1910e97.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/ac84a34f310745c0a6bbbcac918d5fb6.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/92445ba1c5d74f95bd4dab3244bbb63a.png">
+<meta property="og:image" content="http://dinayuil.github.io/resources/d6fc92cb118546fb81d2b359ecec949f.png">
+<meta property="article:published_time" content="2025-01-06T16:16:53.000Z">
+<meta property="article:modified_time" content="2025-01-16T15:17:30.000Z">
+<meta property="article:author" content="Yandi Liu">
+<meta property="article:tag" content="software">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="language learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dinayuil.github.io/resources/5c9e7ab906b0448d8c50f8e50a509c52.png">
+
+
+<link rel="canonical" href="http://dinayuil.github.io/2025/01/06/250106-%E6%90%AD%E5%BB%BAesp32-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-esp-idf-vmware-vs-code-ubuntu-server/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://dinayuil.github.io/2025/01/06/250106-%E6%90%AD%E5%BB%BAesp32-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-esp-idf-vmware-vs-code-ubuntu-server/","path":"2025/01/06/250106-搭建esp32-开发环境-esp-idf-vmware-vs-code-ubuntu-server/","title":"250106 搭建ESP32 开发环境 ESP-IDF, VMware, VS Code, Ubuntu Server"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>250106 搭建ESP32 开发环境 ESP-IDF, VMware, VS Code, Ubuntu Server | Yandi's Garden</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-354MG6H6PY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-354MG6H6PY","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yandi's Garden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%AE%80%E4%BB%8B"><span class="nav-text"> 设置简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ubuntu-server"><span class="nav-text"> 虚拟机安装ubuntu server</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BDvmware-workstation"><span class="nav-text"> 从官网下载VMWare Workstation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-text"> Ubuntu下载安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bubuntu-server%E7%9A%84ip%E5%9C%B0%E5%9D%80"><span class="nav-text"> 查看ubuntu server的IP地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85esp-idf"><span class="nav-text"> 在ubuntu上安装ESP-IDF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86idfpy%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E5%8A%A0%E5%85%A5%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text"> 将idf.py命令永久加入环境变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8vs-code%E7%9B%B8%E5%85%B3%E6%8F%92%E4%BB%B6"><span class="nav-text"> 安装和使用VS Code相关插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%8F%92%E4%BB%B6"><span class="nav-text"> 本地插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remote%E6%8F%92%E4%BB%B6"><span class="nav-text"> remote插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEremote-ssh%E6%8F%92%E4%BB%B6"><span class="nav-text"> 设置Remote SSH插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8esp-idf%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8Cvs-code%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE"><span class="nav-text"> 使用ESP-IDF命令行和VS Code开发项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#esp32%E8%8A%AF%E7%89%87%E6%A8%A1%E7%BB%84%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-text"> ESP32，芯片，模组，开发板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%AF%E7%89%87-%E6%A8%A1%E7%BB%84-%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-text"> 芯片 模组 开发板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#esp32%E7%B3%BB%E5%88%97"><span class="nav-text"> ESP32系列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5hello-world%E4%B8%BA%E4%BE%8B%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AAesp32%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%AE%80%E5%8D%95%E6%B5%81%E7%A8%8B"><span class="nav-text"> 以Hello World为例，开发一个ESP32项目的简单流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-text"> 创建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5idf%E6%BA%90%E7%A0%81%E8%B7%AF%E5%BE%84"><span class="nav-text"> 引入IDF源码路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E5%BC%80%E5%A7%8B%E7%BC%96%E5%86%99%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%89%8D%E5%85%88%E6%9E%84%E5%BB%BA%E4%B8%80%E6%AC%A1%E9%A1%B9%E7%9B%AE"><span class="nav-text"> 在开始编写程序之前先构建一次项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hello-world%E4%BB%A3%E7%A0%81"><span class="nav-text"> Hello world代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%9B%AE%E6%A0%87%E8%8A%AF%E7%89%87"><span class="nav-text"> 选择目标芯片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B"><span class="nav-text"> 配置工程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flash-size"><span class="nav-text"> Flash size</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8D%E7%9F%A5%E9%81%93flash%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-text"> 不知道Flash的大小？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#esp-psram"><span class="nav-text"> ESP PSRAM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cpu-frequency"><span class="nav-text"> CPU frequency</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-text"> 构建工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%A7%E5%BD%95%E5%B7%A5%E7%A8%8B"><span class="nav-text"> 烧录工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%BC%80idf%E7%9B%91%E8%A7%86%E5%99%A8"><span class="nav-text"> 打开IDF监视器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text"> 配置过程中可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E4%B8%8D%E5%A4%9F"><span class="nav-text"> Ubuntu硬盘空间不够</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%A7%E5%BD%95%E6%97%B6%E6%8F%90%E7%A4%BAcould-not-open-devttyusb"><span class="nav-text"> 烧录时提示Could not open &#x2F;dev&#x2F;ttyUSB*</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yandi Liu</p>
+  <div class="site-description" itemprop="description">Work hard, Play hard!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dinayuil" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dinayuil" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yandi-liu-a82bbb156/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yandi-liu-a82bbb156&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2025/01/06/250106-%E6%90%AD%E5%BB%BAesp32-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-esp-idf-vmware-vs-code-ubuntu-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yandi Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yandi's Garden">
+      <meta itemprop="description" content="Work hard, Play hard!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="250106 搭建ESP32 开发环境 ESP-IDF, VMware, VS Code, Ubuntu Server | Yandi's Garden">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          250106 搭建ESP32 开发环境 ESP-IDF, VMware, VS Code, Ubuntu Server
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-01-06 17:16:53" itemprop="dateCreated datePublished" datetime="2025-01-06T17:16:53+01:00">2025-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-16 16:17:30" itemprop="dateModified" datetime="2025-01-16T16:17:30+01:00">2025-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/research/" itemprop="url" rel="index"><span itemprop="name">research</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/research/esp32%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">esp32学习</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2025/01/06/250106-%E6%90%AD%E5%BB%BAesp32-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-esp-idf-vmware-vs-code-ubuntu-server/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2025/01/06/250106-搭建esp32-开发环境-esp-idf-vmware-vs-code-ubuntu-server/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>11k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>10 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="设置简介"><a class="markdownIt-Anchor" href="#设置简介"></a> 设置简介</h1>
+<p>主机操作系统是windows 10。使用VMWare workstation虚拟机安装Ubuntu Server 20.04。VS Code安装一些插件，SSH连接到ubuntu虚拟机进行ESP32的开发。VS Code只负责编辑代码，其他操作（创建项目、配置、编译、烧录等）使用ESP-IDF的命令行命令。</p>
+<p>参考了B站教程 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eRg7exEcT/">https://www.bilibili.com/video/BV1eRg7exEcT/</a></p>
+<h1 id="虚拟机安装ubuntu-server"><a class="markdownIt-Anchor" href="#虚拟机安装ubuntu-server"></a> 虚拟机安装ubuntu server</h1>
+<p>开始是用VirtualBox安装ubuntu，结果遇到了网络设置的问题。网络配置好了，又遇到了ESP开发板USB连接电脑后虚拟机不能正常识别的问题。教程里用的是VMWare，本来觉得虚拟机软件应该没多大影响的，还是再试试VMWare吧，结果试了之后发现确实省了不少事……</p>
+<p>不过最开始没用VMWare，是因为直接去VMWare官网，都不知道下载的地方在哪，得先在google搜索vmware workstation才能到下载相关的网页，但是下载之前要先注册账号。而VirtualBox进入官网就可以直接下载了。</p>
+<h2 id="从官网下载vmware-workstation"><a class="markdownIt-Anchor" href="#从官网下载vmware-workstation"></a> 从官网下载VMWare Workstation</h2>
+<p>看了下VMWare的历史，也是几经易手，现在是属于Broadcom了。先直接搜索“vmware workstation download”，第一个结果就是，进去之后点击&quot;download fusion or workstation&quot;。Fusion是Mac OS用的，Windows用workstation。<br />
+下载workstation要先注册broadcom账号，登录之后在搜索栏里搜索“workstation”就能找到下载的页面了。现在pro版本对个人也已经免费了，直接用pro版就好。</p>
+<p><img src="/resources/5c9e7ab906b0448d8c50f8e50a509c52.png" alt="c40427d278147fc980011be21896b98f.png" /></p>
+<p><img src="/resources/498f5404605b4f799319d2c67b500585.png" alt="2cf7d62bbc7aee50f338e1bbae85e69c.png" /></p>
+<p><img src="/resources/94d498ba90ae491e90a0b4c51e0df44d.png" alt="a5d83828411860886bc32f3ea117eceb.png" /></p>
+<h1 id="ubuntu下载安装"><a class="markdownIt-Anchor" href="#ubuntu下载安装"></a> Ubuntu下载安装</h1>
+<p>安装Ubuntu server额教程。主要是注意硬盘空间分配，默认的设置不会利用所有空间，不过如果这里忘了配置后面也有补救的方法。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yeyouqing/articles/17021253.html">https://www.cnblogs.com/yeyouqing/articles/17021253.html</a></p>
+<p><a href=":/b2391cd5510f416fb58c2cd42c756d8e">ubuntu.22.04-server版详细安装方法安装</a></p>
+<p>搜索“ubuntu server 20.04 LTS”，进入红色框框起来的网页，下载server版本镜像。<br />
+<img src="/resources/a8ea099b4bd54e7f862e5017829df6df.png" alt="ca89458f1485c8b3f43a75bf9839c7f1.png" /><br />
+虚拟机配置如下图所示。处理器数量根据主机实际处理器选择。硬盘空间，我开始选的是20G，因为想着只是用来学习ESP32的，等后面如果要着手做项目了再增加容量。后来发现就算只是用来学习20G也不够用，所以建议30G以上。但是硬盘空间不够不一定是设置里分配的空间不够，而是ubuntu server可能没有把分配的空间全部用上，详见最后一节“可能遇到的问题”。<br />
+<img src="/resources/bc74b27d4b7c4f6fa4d8092ba4c598ea.png" alt="c8c20d4af30002b03768bd19d24e6d5c.png" /></p>
+<p>安装时记得勾选安装SSH。<br />
+<img src="/resources/5349ecf39a914b71a68b9683be06fc99.png" alt="456364f94e560b3c7c5768aa6cf298b9.png" /><br />
+<strong>不要</strong>安装任何更新。<br />
+<img src="/resources/573929b3d54c467bbe9420a9359f9c65.png" alt="0d03ded083f783b3bb0d690e96d7a1c6.png" /></p>
+<h2 id="查看ubuntu-server的ip地址"><a class="markdownIt-Anchor" href="#查看ubuntu-server的ip地址"></a> 查看ubuntu server的IP地址</h2>
+<p>参考另一篇关于配置VirtualBox中ubuntu网络的博客<br />
+<a href=":/8d498382c7ca4dedaef96b870fb3dd6a">241216 VirtualBox 和 ubuntu server 20.04 配置网络</a></p>
+<h1 id="在ubuntu上安装esp-idf"><a class="markdownIt-Anchor" href="#在ubuntu上安装esp-idf"></a> 在ubuntu上安装ESP-IDF</h1>
+<p>参考官方安装教程<br />
+<a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/linux-macos-setup.html">https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/linux-macos-setup.html</a></p>
+<h2 id="将idfpy命令永久加入环境变量"><a class="markdownIt-Anchor" href="#将idfpy命令永久加入环境变量"></a> 将idf.py命令永久加入环境变量</h2>
+<p>虽然官方文档并不推荐这么做，因为这样之后每次启动一个console都会加载idf.py命令环境。对于正常使用linux操作系统来说应该只在需要使用idf.py的时候才载入，不过我们安装这个ubuntu server就只是为了学习esp32的开发，几乎只要打开console就会用到idf，所以加入环境变量正合适。</p>
+<p>在home目录下使用<code>ls -al</code>命令可以看到一个隐藏文件<code>.profile</code>。使用任意编辑器修改这个文件，在最后一行加入<code>source esp/esp-idf/export.sh</code>。如果使按着官方文档步骤安装的IDF，那么就是这个路径<code>esp/esp-idf/export.sh</code>，如果安装到了别的文件夹就要改成相应的路径。</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">vm@vmwareubserver2004:~$ ls -al</span><br><span class="line">total 64</span><br><span class="line">drwxr-xr-x 10 vm   vm   4096 Dec 18 12:42 .</span><br><span class="line">drwxr-xr-x  3 root root 4096 Dec 16 20:05 ..</span><br><span class="line">-rw-------  1 vm   vm   2857 Jan  8 17:39 .bash_history</span><br><span class="line">-rw-r--r--  1 vm   vm    220 Feb 25  2020 .bash_logout</span><br><span class="line">-rw-r--r--  1 vm   vm   3771 Feb 25  2020 .bashrc</span><br><span class="line">drwx------  5 vm   vm   4096 Dec 16 21:04 .cache</span><br><span class="line">drwxrwxr-x  3 vm   vm   4096 Dec 16 21:04 .dotnet</span><br><span class="line">drwxrwxr-x  4 vm   vm   4096 Dec 16 20:54 esp</span><br><span class="line">drwxrwxr-x  5 vm   vm   4096 Dec 16 20:46 .espressif</span><br><span class="line">drwxrwxr-x  3 vm   vm   4096 Dec 17 09:19 .local</span><br><span class="line">drwxrwxr-x 11 vm   vm   4096 Jan  8 17:11 myproject</span><br><span class="line">-rw-r--r--  1 vm   vm    839 Dec 17 09:22 .profile</span><br><span class="line">drwx------  2 vm   vm   4096 Dec 17 09:35 .ssh</span><br><span class="line">-rw-r--r--  1 vm   vm      0 Dec 16 20:10 .sudo_as_admin_successful</span><br><span class="line">drwxr-x---  5 vm   vm   4096 Jan 10 14:35 .vscode-server</span><br><span class="line">-rw-rw-r--  1 vm   vm    183 Jan  6 09:19 .wget-hsts</span><br><span class="line">-rw-------  1 vm   vm    128 Dec 18 12:42 .Xauthority</span><br></pre></td></tr></table></figure>
+<p>保存修改之后新打开一个console，IDF的环境就会生效了。</p>
+<h1 id="安装和使用vs-code相关插件"><a class="markdownIt-Anchor" href="#安装和使用vs-code相关插件"></a> 安装和使用VS Code相关插件</h1>
+<h2 id="本地插件"><a class="markdownIt-Anchor" href="#本地插件"></a> 本地插件</h2>
+<ul>
+<li>Remote SSH</li>
+</ul>
+<h2 id="remote插件"><a class="markdownIt-Anchor" href="#remote插件"></a> remote插件</h2>
+<p>这里是SSH连接到ubuntu server之后，在ubuntu上安装的VS Code插件</p>
+<ul>
+<li>C/C++</li>
+<li>ESP-IDF</li>
+</ul>
+<p>ESP-IDF插件本来是需要配置ESP-IDF的安装目录的，但是好像是因为先安装了ESP-IDF，插件自动找到了安装目录，所以插件装好后就可以直接用。</p>
+<h2 id="设置remote-ssh插件"><a class="markdownIt-Anchor" href="#设置remote-ssh插件"></a> 设置Remote SSH插件</h2>
+<p>安装了Remote SSH插件之后左边栏会有插件图标，点击进入能看到之前连接过的机器。右上角有一个齿轮图标，点击之后可以选择config文件。<br />
+<img src="/resources/ed80ebc21c474cffbe893829e13f29e3.png" alt="d0d5404fe2b9d0d4cc0b7d60a84cd035.png" /></p>
+<p>一般是使用<code>User\&lt;用户名&gt;\ssh\config</code>这个文件。<br />
+<img src="/resources/1986d0fae99044239ef0b4c8eaf57370.png" alt="df86e8c2f12f6303b15da912b0f3bc67.png" /></p>
+<p>打开之后可以添加如下内容。Host可以填虚拟机的名字，HostName填虚拟机的IP地址，User就是ubuntu server的用户名。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host ubuntu_server_2004</span><br><span class="line">    HostName 192.168.183.128</span><br><span class="line">    User vm</span><br></pre></td></tr></table></figure>
+<p>之后每次连接就会需要输入密码。如果想省略输入密码这一步，可以在虚拟机ubuntu里加入主机的SSH公钥。如何生成一个公钥参考<a target="_blank" rel="noopener" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></p>
+<p>简略的步骤：</p>
+<ul>
+<li>在命令行里输入</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519-sk -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在windows系统里生成的密钥默认在路径<code>c/Users/YOU/.ssh/id_ALGORITHM</code></li>
+<li>打开以<code>.pub</code>结尾的文件，复制里面的内容</li>
+<li>粘贴到ubuntu的<code>~/.ssh/authorized_keys</code>文件里，保存</li>
+</ul>
+<p>这样以后再用SSH连接到虚拟机Ubuntu就不用输入密码了。</p>
+<h1 id="使用esp-idf命令行和vs-code开发项目"><a class="markdownIt-Anchor" href="#使用esp-idf命令行和vs-code开发项目"></a> 使用ESP-IDF命令行和VS Code开发项目</h1>
+<p><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/v5.4/esp32/api-guides/tools/idf-py.html#selecting-idf-target">https://docs.espressif.com/projects/esp-idf/zh_CN/v5.4/esp32/api-guides/tools/idf-py.html#selecting-idf-target</a></p>
+<h2 id="esp32芯片模组开发板"><a class="markdownIt-Anchor" href="#esp32芯片模组开发板"></a> ESP32，芯片，模组，开发板</h2>
+<p>在开发项目之前，有几个概念需要搞清楚。参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tY4y1L7HV">https://www.bilibili.com/video/BV1tY4y1L7HV</a></p>
+<h3 id="芯片-模组-开发板"><a class="markdownIt-Anchor" href="#芯片-模组-开发板"></a> 芯片 模组 开发板</h3>
+<ul>
+<li>芯片就是单独的芯片，不包括无线功能</li>
+<li>模组，包括芯片，会加入一些WIFI、蓝牙等无线收发器，存储器等</li>
+<li>开发板，模组装在开发板上，加了更多外设，USB、按钮，以及引出IO针脚</li>
+</ul>
+<p>芯片、模组、开发板的详细参数，需要根据型号找对应的datasheet，一般很容易就能搜索到。</p>
+<h3 id="esp32系列"><a class="markdownIt-Anchor" href="#esp32系列"></a> ESP32系列</h3>
+<p>“ESP32系列”就是一个单独系列，不包括ESP32-S2系列, ESP32-C3系列, ESP32-S3系列等。但是初学看到“ESP32系列”这个词很容易混淆，以为EPS32系列包含了所有ESP32开头的芯片</p>
+<h2 id="以hello-world为例开发一个esp32项目的简单流程"><a class="markdownIt-Anchor" href="#以hello-world为例开发一个esp32项目的简单流程"></a> 以Hello World为例，开发一个ESP32项目的简单流程</h2>
+<p>首先VS Code使用SSH连接到虚拟机Ubuntu，然后打开命令行。</p>
+<h3 id="创建项目"><a class="markdownIt-Anchor" href="#创建项目"></a> 创建项目</h3>
+<p>选择或者一个文件夹用来存放创建的项目，比如<code>myproject</code>，然后使用以下命令：<br />
+<code>idf.py create-project helloworld</code></p>
+<p>创建成功之后，在VS Code中打开文件夹，然后在弹出的窗口中选择刚创建的文件夹。VS Code就切换到helloworld项目的文件夹了。<br />
+<img src="/resources/d5888e209de44ff8bb75ed61daaaa37b.png" alt="1906a5f2210e4818e71c5088b2e795d8.png" /></p>
+<p><img src="/resources/6aa9a39c42d146b5a82f331cfada09da.png" alt="9c6cb099f8ade5c5001324c2bcc3a8ab.png" /></p>
+<h4 id="引入idf源码路径"><a class="markdownIt-Anchor" href="#引入idf源码路径"></a> 引入IDF源码路径</h4>
+<p>编程时引用ESP-IDF源码的头文件，VS Code需要知道IDF源码在哪。设置方法：<br />
+<code>Crtl + Shift + P</code>，调出VS Code命令框，输入<code>ESP-IDF: Add vscode Configuration Folder</code>。</p>
+<p><img src="/resources/9b730fcf17914e31a8c4f77030449022.png" alt="b62a253931e5396835c92a4fe3d3c555.png" /></p>
+<h4 id="在开始编写程序之前先构建一次项目"><a class="markdownIt-Anchor" href="#在开始编写程序之前先构建一次项目"></a> 在开始编写程序之前先构建一次项目</h4>
+<p><code>idf.py build</code><br />
+这一步主要是因为有时候会出现include IDF头文件时报错，先构建一次之后就不会报错了。</p>
+<h4 id="hello-world代码"><a class="markdownIt-Anchor" href="#hello-world代码"></a> Hello world代码</h4>
+<p>在<code>main/helloworld.c</code>中加入如下代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">app_main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    ESP_LOGI(<span class="string">&quot;HelloWorld&quot;</span>, <span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="选择目标芯片"><a class="markdownIt-Anchor" href="#选择目标芯片"></a> 选择目标芯片</h3>
+<p>在VS Code中打开命令行，使用命令：<br />
+<code>idf.py set-target esp32</code></p>
+<p>如果不执行<code>set-target</code>这一步，构建系统默认使用<code>esp32</code>。</p>
+<h3 id="配置工程"><a class="markdownIt-Anchor" href="#配置工程"></a> 配置工程</h3>
+<p>使用命令：<br />
+<code>idf.py menuconfig</code></p>
+<p>命令行里会出现：<br />
+<img src="/resources/9ffd864e877445309cc860290acef463.png" alt="36c92aac140d726fee65341dfaafb28c.png" /><br />
+可以设置的参数太多，这里举一些例子。</p>
+<h4 id="flash-size"><a class="markdownIt-Anchor" href="#flash-size"></a> Flash size</h4>
+<p>进入<code>Serial flasher config</code>，再进入<code>Flash size</code>，可以设置flash大小。<br />
+<img src="/resources/666aa93caa6141e0ad79fed5c1910e97.png" alt="11d4ff9e3c793b9acc585e8633263835.png" /></p>
+<h5 id="不知道flash的大小"><a class="markdownIt-Anchor" href="#不知道flash的大小"></a> 不知道Flash的大小？</h5>
+<p>我在这遇到了一个问题。我用的模组，从模组上的印刷文字来开，是ESP32-WROVER-IE，但是这个模组根据储存器大小细又分了好几个不同型号，而我并没有更详细的信息。于是抱着试试看的心态，启用了<code>Detect flash size when flashing bootlodaer</code>，发现真的可以用。</p>
+<h4 id="esp-psram"><a class="markdownIt-Anchor" href="#esp-psram"></a> ESP PSRAM</h4>
+<p>我使用的模组还带有PSRAM，想启用PSRAM，需要以下设置：<br />
+进入<code>Component Config</code>-&gt;<code>ESP PSRAM</code>，选中<br />
+<img src="/resources/ac84a34f310745c0a6bbbcac918d5fb6.png" alt="c5c4e20e2c744d30df030e3003c0c9b9.png" /></p>
+<h4 id="cpu-frequency"><a class="markdownIt-Anchor" href="#cpu-frequency"></a> CPU frequency</h4>
+<p>默认的频率是160MHz，我的模组最高支持240MHz，通过以下方式修改：<br />
+进入<code>Component config</code>-&gt;<code>ESP System Settings</code>，再进入<code>CPU frequency</code>就可以修改频率了。<br />
+<img src="/resources/92445ba1c5d74f95bd4dab3244bbb63a.png" alt="60d8b542ad397702e5eca486757c16da.png" /></p>
+<p>最后记得保存。</p>
+<h3 id="构建工程"><a class="markdownIt-Anchor" href="#构建工程"></a> 构建工程</h3>
+<p><code>idf.py build</code></p>
+<h3 id="烧录工程"><a class="markdownIt-Anchor" href="#烧录工程"></a> 烧录工程</h3>
+<p>如果没安装驱动首先需要安装驱动。开发板USB连接到电脑上时，VMWare workstation会弹出一个对话框，让我们选择连接到<strong>主机</strong>还是<strong>虚拟机</strong>，我们当然选虚拟机。<br />
+不过如果这里选错了，之后也可以更改：<br />
+<img src="/resources/d6fc92cb118546fb81d2b359ecec949f.png" alt="9d0fec0d2fe7306374a370852f9981de.png" /><br />
+连接好之后使用命令：<br />
+<code>idf.py flash</code></p>
+<p>以下是输出结果，可以看到<code>Auto-detected Flash size: 8MB</code>，刚才设置的自动检测flash大小生效了。</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">Executing action: flash</span><br><span class="line">Serial port /dev/ttyUSB0</span><br><span class="line">Connecting.....</span><br><span class="line">Detecting chip type... Unsupported detection protocol, switching and trying again...</span><br><span class="line">Connecting.....</span><br><span class="line">Detecting chip type... ESP32</span><br><span class="line">Running ninja in directory /home/vm/myproject/helloworld/build</span><br><span class="line">Executing &quot;ninja flash&quot;...</span><br><span class="line">[1/5] cd /home/vm/myproject/helloworld/build/esp-idf/esptool_py &amp;&amp; /home/vm/.espressif/python_env/idf5.2_py...ect/helloworld/build/partition_table/partition-table.bin /home/vm/myproject/helloworld/build/helloworld.bin</span><br><span class="line">helloworld.bin binary size 0x36e60 bytes. Smallest app partition is 0x100000 bytes. 0xc91a0 bytes (79%) free.</span><br><span class="line">[1/1] cd /home/vm/myproject/helloworld/build/bootloader/esp-idf/esptool_py &amp;&amp; /home/vm/.espressif/python_en...ck_sizes.py --offset 0x8000 bootloader 0x1000 /home/vm/myproject/helloworld/build/bootloader/bootloader.bin</span><br><span class="line">Bootloader binary size 0x6840 bytes. 0x7c0 bytes (7%) free.</span><br><span class="line">[2/3] cd /home/vm/esp/esp-idf/components/esptool_py &amp;&amp; /usr/bin/cmake -D IDF_PATH=/home/vm/esp/esp-idf -D &quot;...ORY=/home/vm/myproject/helloworld/build -P /home/vm/esp/esp-idf/components/esptool_py/run_serial_tool.cmake</span><br><span class="line">esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size detect 0x1000 bootloader/bootloader.bin 0x10000 helloworld.bin 0x8000 partition_table/partition-table.bin</span><br><span class="line">esptool.py v4.8.1</span><br><span class="line">Serial port /dev/ttyUSB0</span><br><span class="line">Connecting....</span><br><span class="line">Chip is ESP32-D0WD-V3 (revision v3.0)</span><br><span class="line">Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None</span><br><span class="line">Crystal is 40MHz</span><br><span class="line">MAC: 10:97:bd:d4:32:b0</span><br><span class="line">Uploading stub...</span><br><span class="line">Running stub...</span><br><span class="line">Stub running...</span><br><span class="line">Changing baud rate to 460800</span><br><span class="line">Changed.</span><br><span class="line">Configuring flash size...</span><br><span class="line">Auto-detected Flash size: 8MB</span><br><span class="line">Flash will be erased from 0x00001000 to 0x00007fff...</span><br><span class="line">Flash will be erased from 0x00010000 to 0x00046fff...</span><br><span class="line">Flash will be erased from 0x00008000 to 0x00008fff...</span><br><span class="line">Flash params set to 0x0230</span><br><span class="line">Compressed 26688 bytes to 16308...</span><br><span class="line">Writing at 0x00001000... (100 %)</span><br><span class="line">Wrote 26688 bytes (16308 compressed) at 0x00001000 in 0.8 seconds (effective 278.4 kbit/s)...</span><br><span class="line">Hash of data verified.</span><br><span class="line">Compressed 224864 bytes to 111865...</span><br><span class="line">Writing at 0x00041714... (100 %)</span><br><span class="line">Wrote 224864 bytes (111865 compressed) at 0x00010000 in 2.6 seconds (effective 682.9 kbit/s)...</span><br><span class="line">Hash of data verified.</span><br><span class="line">Compressed 3072 bytes to 103...</span><br><span class="line">Writing at 0x00008000... (100 %)</span><br><span class="line">Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 419.6 kbit/s)...</span><br><span class="line">Hash of data verified.</span><br><span class="line"></span><br><span class="line">Leaving...</span><br><span class="line">Hard resetting via RTS pin...</span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
+<h3 id="打开idf监视器"><a class="markdownIt-Anchor" href="#打开idf监视器"></a> 打开IDF监视器</h3>
+<p><code>idf.py monitor</code></p>
+<p>输出如下。可以看到<code>I (190) esp_psram: Found 8MB PSRAM device</code>，检测到了8MB的PSRAM。<br />
+<code>I (1234) HelloWorld: Hello, world!</code>代码里的Hello World也成功打印出来了。</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">Executing action: monitor</span><br><span class="line">Serial port /dev/ttyUSB0</span><br><span class="line">Connecting....</span><br><span class="line">Detecting chip type... Unsupported detection protocol, switching and trying again...</span><br><span class="line">Connecting....</span><br><span class="line">Detecting chip type... ESP32</span><br><span class="line">Running idf_monitor in directory /home/vm/myproject/helloworld</span><br><span class="line">Executing &quot;/home/vm/.espressif/python_env/idf5.2_py3.8_env/bin/python /home/vm/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/vm/myproject/helloworld/build/helloworld.elf -m &#x27;/home/vm/.espressif/python_env/idf5.2_py3.8_env/bin/python&#x27; &#x27;/home/vm/esp/esp-idf/tools/idf.py&#x27;&quot;...</span><br><span class="line">--- esp-idf-monitor 1.5.0 on /dev/ttyUSB0 115200</span><br><span class="line">--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H</span><br><span class="line">ets Jul 29 2019 12:21:46</span><br><span class="line"></span><br><span class="line">rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)</span><br><span class="line">configsip: 0, SPIWP:0xee</span><br><span class="line">clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00</span><br><span class="line">mode:DIO, clock div:2</span><br><span class="line">load:0x3fff0030,len:7172</span><br><span class="line">load:0x40078000,len:15540</span><br><span class="line">load:0x40080400,len:4</span><br><span class="line">--- 0x40080400: _init at ??:?</span><br><span class="line"></span><br><span class="line">ho 8 tail 4 room 4</span><br><span class="line">load:0x40080404,len:3904</span><br><span class="line">entry 0x40080640</span><br><span class="line">I (31) boot: ESP-IDF v5.2.3 2nd stage bootloader</span><br><span class="line">I (31) boot: compile time Jan 10 2025 17:05:00</span><br><span class="line">I (31) boot: Multicore bootloader</span><br><span class="line">I (35) boot: chip revision: v3.0</span><br><span class="line">I (39) boot.esp32: SPI Speed      : 40MHz</span><br><span class="line">I (44) boot.esp32: SPI Mode       : DIO</span><br><span class="line">I (48) boot.esp32: SPI Flash Size : 8MB</span><br><span class="line">I (53) boot: Enabling RNG early entropy source...</span><br><span class="line">I (58) boot: Partition Table:</span><br><span class="line">I (62) boot: ## Label            Usage          Type ST Offset   Length</span><br><span class="line">I (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000</span><br><span class="line">I (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000</span><br><span class="line">I (84) boot:  2 factory          factory app      00 00 00010000 00100000</span><br><span class="line">I (92) boot: End of partition table</span><br><span class="line">I (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0d814h ( 55316) map</span><br><span class="line">I (116) esp_image: segment 1: paddr=0001d83c vaddr=3ffb0000 size=022a0h (  8864) load</span><br><span class="line">I (118) esp_image: segment 2: paddr=0001fae4 vaddr=40080000 size=00534h (  1332) load</span><br><span class="line">I (124) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=17204h ( 94724) map</span><br><span class="line">I (151) esp_image: segment 4: paddr=0003722c vaddr=40080534 size=0fc24h ( 64548) load</span><br><span class="line">I (176) boot: Loaded app from partition at offset 0x10000</span><br><span class="line">I (176) boot: Disabling RNG early entropy source...</span><br><span class="line">I (187) cpu_start: Multicore app</span><br><span class="line">I (188) quad_psram: This chip is ESP32-D0WD</span><br><span class="line">I (190) esp_psram: Found 8MB PSRAM device</span><br><span class="line">I (190) esp_psram: Speed: 40MHz</span><br><span class="line">I (194) esp_psram: PSRAM initialized, cache is in low/high (2-core) mode.</span><br><span class="line">W (201) esp_psram: Virtual address not enough for PSRAM, map as much as we can. 4MB is mapped</span><br><span class="line">I (1116) esp_psram: SPI SRAM memory test OK</span><br><span class="line">I (1124) cpu_start: Pro cpu start user code</span><br><span class="line">I (1124) cpu_start: cpu freq: 240000000 Hz</span><br><span class="line">I (1124) cpu_start: Application information:</span><br><span class="line">I (1127) cpu_start: Project name:     helloworld</span><br><span class="line">I (1132) cpu_start: App version:      1</span><br><span class="line">I (1137) cpu_start: Compile time:     Jan 10 2025 17:04:43</span><br><span class="line">I (1143) cpu_start: ELF file SHA256:  729bcc1d8...</span><br><span class="line">I (1148) cpu_start: ESP-IDF:          v5.2.3</span><br><span class="line">I (1153) cpu_start: Min chip rev:     v0.0</span><br><span class="line">I (1158) cpu_start: Max chip rev:     v3.99 </span><br><span class="line">I (1163) cpu_start: Chip rev:         v3.0</span><br><span class="line">I (1168) heap_init: Initializing. RAM available for dynamic allocation:</span><br><span class="line">I (1175) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM</span><br><span class="line">I (1181) heap_init: At 3FFB2BE0 len 0002D420 (181 KiB): DRAM</span><br><span class="line">I (1188) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM</span><br><span class="line">I (1194) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM</span><br><span class="line">I (1201) heap_init: At 40090158 len 0000FEA8 (63 KiB): IRAM</span><br><span class="line">I (1207) esp_psram: Adding pool of 4096K of PSRAM memory to heap allocator</span><br><span class="line">I (1216) spi_flash: detected chip: generic</span><br><span class="line">I (1219) spi_flash: flash io: dio</span><br><span class="line">I (1224) main_task: Started on CPU0</span><br><span class="line">I (1234) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations</span><br><span class="line">I (1234) main_task: Calling app_main()</span><br><span class="line">I (1234) HelloWorld: Hello, world!</span><br><span class="line">I (1244) main_task: Returned from app_main()</span><br></pre></td></tr></table></figure>
+<h1 id="配置过程中可能遇到的问题"><a class="markdownIt-Anchor" href="#配置过程中可能遇到的问题"></a> 配置过程中可能遇到的问题</h1>
+<h2 id="ubuntu硬盘空间不够"><a class="markdownIt-Anchor" href="#ubuntu硬盘空间不够"></a> Ubuntu硬盘空间不够</h2>
+<p>Ubuntu可能没有使用所有的硬盘空间<br />
+<a target="_blank" rel="noopener" href="https://www.moralok.com/2023/06/24/Ubuntu-server-20-04-not-all-disk-space-was-allocated-after-installation/">https://www.moralok.com/2023/06/24/Ubuntu-server-20-04-not-all-disk-space-was-allocated-after-installation/</a></p>
+<h2 id="烧录时提示could-not-open-devttyusb"><a class="markdownIt-Anchor" href="#烧录时提示could-not-open-devttyusb"></a> 烧录时提示Could not open /dev/ttyUSB*</h2>
+<p>出现这个错误的时候命令行里也有提示怎么做，使用这个命令<br />
+<code>sudo usermod -aG dialout &lt;usrname&gt;</code>，其中username需要替换成我们在ubuntu使用的用户名。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Yandi Liu
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="http://dinayuil.github.io/2025/01/06/250106-%E6%90%AD%E5%BB%BAesp32-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-esp-idf-vmware-vs-code-ubuntu-server/" title="250106 搭建ESP32 开发环境 ESP-IDF, VMware, VS Code, Ubuntu Server">http://dinayuil.github.io/2025/01/06/250106-搭建esp32-开发环境-esp-idf-vmware-vs-code-ubuntu-server/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_linkedin"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_evernote"></a>
+      <a class="a2a_button_wechat"></a>
+      <a class="a2a_button_qzone"></a>
+      <a class="a2a_button_sina_weibo"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_email"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/03/241103-%E4%BB%8E%E6%AF%94%E5%88%A9%E6%97%B6%E7%94%B3%E8%AF%B7%E6%B3%95%E5%9B%BDphd%E7%9A%84%E7%AD%BE%E8%AF%81/" rel="prev" title="241103 从比利时申请法国PhD的签证">
+                  <i class="fa fa-chevron-left"></i> 241103 从比利时申请法国PhD的签证
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/13/250313-ns-3-%E5%AE%89%E8%A3%85/" rel="next" title="250313 NS-3 安装">
+                  250313 NS-3 安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yandi Liu</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">165k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"yandis-little-world","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

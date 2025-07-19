@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dinayuil.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="enable bluetooth 安装好Arch linux之后发现没有蓝牙，在设置里也启用不了，才发现要用命令行 1sudo systemctl enable --now bluetooth https:&#x2F;&#x2F;arch.icekylin.online&#x2F;guide&#x2F;rookie&#x2F;desktop-env-and-app#_11-启动蓝牙-若有  install Chinese fonts There">
+<meta property="og:type" content="article">
+<meta property="og:title" content="250712 Arch Linux Installation notes">
+<meta property="og:url" content="http://dinayuil.github.io/2025/07/12/250712-arch-linux-installation-notes/index.html">
+<meta property="og:site_name" content="Yandi&#39;s Garden">
+<meta property="og:description" content="enable bluetooth 安装好Arch linux之后发现没有蓝牙，在设置里也启用不了，才发现要用命令行 1sudo systemctl enable --now bluetooth https:&#x2F;&#x2F;arch.icekylin.online&#x2F;guide&#x2F;rookie&#x2F;desktop-env-and-app#_11-启动蓝牙-若有  install Chinese fonts There">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-07-12T18:04:42.000Z">
+<meta property="article:modified_time" content="2025-07-13T18:56:24.000Z">
+<meta property="article:author" content="Yandi Liu">
+<meta property="article:tag" content="software">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="language learning">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dinayuil.github.io/2025/07/12/250712-arch-linux-installation-notes/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://dinayuil.github.io/2025/07/12/250712-arch-linux-installation-notes/","path":"2025/07/12/250712-arch-linux-installation-notes/","title":"250712 Arch Linux Installation notes"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>250712 Arch Linux Installation notes | Yandi's Garden</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-354MG6H6PY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-354MG6H6PY","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yandi's Garden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#enable-bluetooth"><span class="nav-text"> enable bluetooth</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-chinese-fonts"><span class="nav-text"> install Chinese fonts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#laggy-and-flickering-external-monitor"><span class="nav-text"> Laggy and flickering external monitor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nvidia-optimus"><span class="nav-text"> Nvidia Optimus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-text"> Solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vertical-panel-date-time-too-small"><span class="nav-text"> vertical panel date time too small</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#french-input-method-with-qwerty-keyboard"><span class="nav-text"> French input method with QWERTY keyboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#auto-mount-ntfs-disk"><span class="nav-text"> Auto mount NTFS disk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#manage-appimages"><span class="nav-text"> Manage AppImages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#show-caps-lock-and-num-lock-status"><span class="nav-text"> Show Caps Lock and Num Lock status</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yandi Liu</p>
+  <div class="site-description" itemprop="description">Work hard, Play hard!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dinayuil" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dinayuil" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yandi-liu-a82bbb156/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yandi-liu-a82bbb156&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://dinayuil.github.io/2025/07/12/250712-arch-linux-installation-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yandi Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yandi's Garden">
+      <meta itemprop="description" content="Work hard, Play hard!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="250712 Arch Linux Installation notes | Yandi's Garden">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          250712 Arch Linux Installation notes
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-07-12 20:04:42" itemprop="dateCreated datePublished" datetime="2025-07-12T20:04:42+02:00">2025-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-07-13 20:56:24" itemprop="dateModified" datetime="2025-07-13T20:56:24+02:00">2025-07-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/sw-hw/" itemprop="url" rel="index"><span itemprop="name">sw-hw</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/sw-hw/arch/" itemprop="url" rel="index"><span itemprop="name">arch</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2025/07/12/250712-arch-linux-installation-notes/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2025/07/12/250712-arch-linux-installation-notes/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>5k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>5 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="enable-bluetooth"><a class="markdownIt-Anchor" href="#enable-bluetooth"></a> enable bluetooth</h1>
+<p>安装好Arch linux之后发现没有蓝牙，在设置里也启用不了，才发现要用命令行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable --now bluetooth</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://arch.icekylin.online/guide/rookie/desktop-env-and-app#_11-%E5%90%AF%E5%8A%A8%E8%93%9D%E7%89%99-%E8%8B%A5%E6%9C%89">https://arch.icekylin.online/guide/rookie/desktop-env-and-app#_11-启动蓝牙-若有</a></p>
+<h1 id="install-chinese-fonts"><a class="markdownIt-Anchor" href="#install-chinese-fonts"></a> install Chinese fonts</h1>
+<p>There is a list of Chinese fonts:<br />
+<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Localization/Simplified_Chinese">https://wiki.archlinux.org/title/Localization/Simplified_Chinese</a></p>
+<p>just just pacman to install one and then the firefox display Chinese characters correctly.</p>
+<h1 id="laggy-and-flickering-external-monitor"><a class="markdownIt-Anchor" href="#laggy-and-flickering-external-monitor"></a> Laggy and flickering external monitor</h1>
+<p>Desktop environment: KDE plasma.</p>
+<p>My laptop has an Intel integrated GPU and a GTX 1050 GPU. At the arch linstallation step, I choose the “all open source” for GPU drivers.</p>
+<p>Once I connected an external monitor to my laptop, the good news was that the monitor was recognized and showed graphics; while the bad news was that there was tearing or laggy on the external dispay. The first idea was to install the nvidia drivers.</p>
+<p><a target="_blank" rel="noopener" href="https://arch.icekylin.online/guide/rookie/graphic-driver#%E7%8B%AC%E7%AB%8B%E6%98%BE%E5%8D%A1">https://arch.icekylin.online/guide/rookie/graphic-driver#独立显卡</a></p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/NVIDIA">https://wiki.archlinux.org/title/NVIDIA</a></p>
+<p>I installed <code>nvidia</code> <code>nvidia-settings</code> packages. After reboot, the external display was no longer laggy, but became flickering.</p>
+<h2 id="nvidia-optimus"><a class="markdownIt-Anchor" href="#nvidia-optimus"></a> Nvidia Optimus</h2>
+<p>It seems a tool to make it easier to switch between integrated GPU and the descrete GPU. However, after installed, I found that it doesn’t support wayland. This gave me a hint that the problem might due to some incompatibility between Nvidia driver and wayland.</p>
+<p>Although I later switched from wayland to xorg, I didn’t use it as I don’t understand its configurations. As long as now my external monitor works well, I don’t bother with it.</p>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<p>Switch from wayland to xorg session.</p>
+<p><a target="_blank" rel="noopener" href="https://archlinux.org/news/plasma-640-will-need-manual-intervention-if-you-are-on-x11/">https://archlinux.org/news/plasma-640-will-need-manual-intervention-if-you-are-on-x11/</a></p>
+<ol>
+<li>Install plasma-x11-session.</li>
+<li>Log out.</li>
+<li>Log in with Xorg session.</li>
+</ol>
+<p>Done!</p>
+<h1 id="vertical-panel-date-time-too-small"><a class="markdownIt-Anchor" href="#vertical-panel-date-time-too-small"></a> vertical panel date time too small</h1>
+<p>When I changed the panel from bottom to left vertical, the clock and date became very small, nearly not readable. After some exploration, I found that KDE Plasma offers a flexible way to customize the desktop panels.</p>
+<p>I can create multiple panels on the desktop, and each panel can contain multiple widgets. The Clock is just a widget. So, I create an <code>Application Menu Bar</code> panel at the top, and move the clock widget to that panel.</p>
+<h1 id="french-input-method-with-qwerty-keyboard"><a class="markdownIt-Anchor" href="#french-input-method-with-qwerty-keyboard"></a> French input method with QWERTY keyboard</h1>
+<p><a target="_blank" rel="noopener" href="https://chakra-zh.blogspot.com/2012/09/chakra.html">https://chakra-zh.blogspot.com/2012/09/chakra.html</a></p>
+<ol>
+<li>First need to install Fcitx5</li>
+<li>Settign -&gt; Input Method -&gt; Add Input Method…
+<ul>
+<li>Find “Keyboard - English (US) - English (US, intl., with dead keys)”</li>
+</ul>
+</li>
+</ol>
+<h1 id="auto-mount-ntfs-disk"><a class="markdownIt-Anchor" href="#auto-mount-ntfs-disk"></a> Auto mount NTFS disk</h1>
+<p>There are two storage drives on my lapto, one is used for OS, another is for data storage. Of course, both are originally used under Windows so they used NTFS file system. The one used for installing Arch OS has been formatted to ext4. The other one is not changed. After all, I don’t want to erase the data on it. Thus, I choose to cotinue use NTFS under Arch OS. Fortunately it’s not a big problem, Arch kernel already support NTFS file system.</p>
+<ol>
+<li>use the following command to list available disks</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -f</span><br></pre></td></tr></table></figure>
+<p>In my case, I see my unmounted disk is <code>sda</code>, and the largest partition is <code>sda2</code>, and we get the <code>UUID</code> of it. I decide to mount this device to <code>/mnt/ntfsssd</code>.</p>
+<ol start="2">
+<li>edit the file <code>/etc/fstab</code>, add the disk partition, save the file.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># &lt;file system&gt;        &lt;mount point&gt;   &lt;type&gt;   &lt;options&gt;                                &lt;dump&gt;  &lt;pass&gt;</span><br><span class="line">UUID=8E76D90B76D8F545  /mnt/ntfsssd    ntfs  defaults,uid=1000,gid=1000,windows_names  0       0</span><br></pre></td></tr></table></figure>
+<p><strong>Options explaination</strong></p>
+<ul>
+<li>
+<p>UUID=8E76D90B76D8F545: This is the unique identifier for your disk partition. Using the UUID is more reliable than using the device path (e.g., /dev/sda2).</p>
+</li>
+<li>
+<p>/mnt/ntfsssd: The directory where the filesystem will be mounted. You must create this directory first if it doesn’t exist: sudo mkdir -p /mnt/ntfsssd.</p>
+</li>
+<li>
+<p>ntfs3: This specifies the filesystem type.</p>
+</li>
+<li>
+<p>defaults,uid=1000,gid=1000,windows_names: These are the mount options.</p>
+<ul>
+<li>
+<p>defaults: A standard set of options suitable for most cases.</p>
+</li>
+<li>
+<p>uid=1000, gid=1000: These set the ownership of the mounted files to your user. NTFS doesn’t support standard Linux permissions, so this makes your user the owner, giving you full read/write access. You can find your specific uid and gid by running the <code>id</code> command in your terminal. 1000 is the standard for the first user created on most systems.</p>
+</li>
+<li>
+<p>windows_names: This option prevents you from creating files with names or characters that are illegal on Windows, which is useful for cross-platform compatibility.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>0 (dump): This disables the dump utility for this filesystem, which is standard for NTFS.</p>
+</li>
+<li>
+<p>0 (pass): This tells the fsck utility not to check this filesystem for errors at boot time, as Linux’s fsck can’t repair NTFS partitions.</p>
+</li>
+</ul>
+<ol start="3">
+<li>test if it works</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -a</span><br></pre></td></tr></table></figure>
+<p>After running the command, I get this hint:</p>
+<blockquote>
+<p>mount: (hint) your fstab has been modified, but systemd still uses<br />
+the old version; use ‘systemctl daemon-reload’ to reload.</p>
+</blockquote>
+<p>The NTFS drive now works fine.</p>
+<h1 id="manage-appimages"><a class="markdownIt-Anchor" href="#manage-appimages"></a> Manage AppImages</h1>
+<p>Although it might be a preferable way to install software on Arch by using pacman or yay (AUR), I still find that AppImage is a simple “ready to use” way.</p>
+<p>I also firstly tried to install an AppImage manager from Discover, called Gear Lever. Unfortunately, it doesn’t work - adding AppImage files into Gear Lever always failed.</p>
+<p>I then installed another one called AppImageLauncher (<a target="_blank" rel="noopener" href="https://github.com/TheAssassin/AppImageLauncher">https://github.com/TheAssassin/AppImageLauncher</a>), and it works.</p>
+<p>However, when I tried to run QQ AppImage file(downloaded from official site), AppImageLauncher didn’t managed to create a shortcut in the start menu, with an error message <code>Failed to register AppImage in system via libappimage</code>.</p>
+<h1 id="show-caps-lock-and-num-lock-status"><a class="markdownIt-Anchor" href="#show-caps-lock-and-num-lock-status"></a> Show Caps Lock and Num Lock status</h1>
+<p>Although there is no on screen notification for status change of Caps lock and Num lock, there is a way to show the status by system tray. The <code>System Tray</code> widget has an entry <code>Lock Keys Status</code>. Set it to <code>always shown</code> or <code>shown when relevant</code>, then a status of lock keys will be shown in the system tray when enabled.</p>
+<p><a target="_blank" rel="noopener" href="https://discuss.kde.org/t/caps-lock-numpad-osd-indicator/12934">https://discuss.kde.org/t/caps-lock-numpad-osd-indicator/12934</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Yandi Liu
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="http://dinayuil.github.io/2025/07/12/250712-arch-linux-installation-notes/" title="250712 Arch Linux Installation notes">http://dinayuil.github.io/2025/07/12/250712-arch-linux-installation-notes/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_linkedin"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_evernote"></a>
+      <a class="a2a_button_wechat"></a>
+      <a class="a2a_button_qzone"></a>
+      <a class="a2a_button_sina_weibo"></a>
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_email"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/07/08/250709-hexo-renderer-pandoc-%E6%8A%A5%E9%94%99/" rel="prev" title="250709 hexo-renderer-pandoc 报错 ">
+                  <i class="fa fa-chevron-left"></i> 250709 hexo-renderer-pandoc 报错 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/07/13/250713-install-joplin-in-arch-linux-and-configure-custom-data-path/" rel="next" title="250713 Install Joplin in Arch Linux and configure custom data path">
+                  250713 Install Joplin in Arch Linux and configure custom data path <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yandi Liu</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">165k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:30</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"yandis-little-world","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
